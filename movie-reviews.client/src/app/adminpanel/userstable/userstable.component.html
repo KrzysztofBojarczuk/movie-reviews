@@ -1,0 +1,27 @@
+<p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-users>
+    <tr>
+      <td>{{ users.id }}</td>
+      <td>{{ users.userName }}</td>
+      <td>{{ users.email }}</td>
+      <td>
+        <i
+          (click)="deleteUser(users.id)"
+          class="pi pi-trash"
+          style="font-size: 1.5rem; pointer-events: auto"
+          label="Confirm"
+        ></i>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

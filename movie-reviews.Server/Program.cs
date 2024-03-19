@@ -43,6 +43,11 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors(builder => builder
+    .WithOrigins("https://localhost:4200")
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");

@@ -5,5 +5,7 @@ namespace movie_reviews.Server.Interfaces
     public interface IUserRepository
     {
         Task<ICollection<IdentityUser>> GettAllUsersRepository();
+
+        Task<IdentityUser> DeleteUserRepository(string id);
     }
 }
