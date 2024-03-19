@@ -22,5 +22,18 @@ namespace movie_reviews.Server.Controllers
 
             return Ok(users);
         }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var deleteUser = await _usersRepository.DeleteUserRepository(id);
+
+            if(deleteUser == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
 }
