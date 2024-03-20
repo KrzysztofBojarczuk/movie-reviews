@@ -35,5 +35,19 @@ namespace movie_reviews.Server.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("UserReview/{id}")]
+        public async Task<IActionResult>  GetUserWithReviews(string id)
+        {
+            var userReview = await _usersRepository.GetUserWithReviewsRepository(id);
+
+            if(userReview == null)
+            {
+
+                return NotFound();
+            }
+
+            return Ok(userReview);
+        }
     }
 }
