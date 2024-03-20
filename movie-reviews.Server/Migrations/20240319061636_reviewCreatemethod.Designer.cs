@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using movie_reviews.Server.Data;
 
@@ -11,9 +12,11 @@ using movie_reviews.Server.Data;
 namespace movie_reviews.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240319061636_reviewCreatemethod")]
+    partial class reviewCreatemethod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,7 +322,7 @@ namespace movie_reviews.Server.Migrations
             modelBuilder.Entity("movie_reviews.Server.models.Review", b =>
                 {
                     b.HasOne("movie_reviews.Server.models.AppUser", "AppUser")
-                        .WithMany("Review")
+                        .WithMany("Races")
                         .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
@@ -327,7 +330,7 @@ namespace movie_reviews.Server.Migrations
 
             modelBuilder.Entity("movie_reviews.Server.models.AppUser", b =>
                 {
-                    b.Navigation("Review");
+                    b.Navigation("Races");
                 });
 #pragma warning restore 612, 618
         }

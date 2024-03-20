@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using movie_reviews.Server.Data;
 using movie_reviews.Server.Interfaces;
+using movie_reviews.Server.models;
 
 namespace movie_reviews.Server.Repository
 {
@@ -14,7 +16,7 @@ namespace movie_reviews.Server.Repository
             _context = context;
         }
 
-        public async Task<ICollection<IdentityUser>> GettAllUsersRepository()
+        public async Task<ICollection<AppUser>> GettAllUsersRepository()
         {
             var users = await _context.Users.ToListAsync();
 
@@ -23,10 +25,10 @@ namespace movie_reviews.Server.Repository
                 return null;
             }
 
-            return users;
+            return (ICollection<AppUser>)users;
         }
 
-        public async Task<IdentityUser> DeleteUserRepository(string userId)
+        public async Task<AppUser> DeleteUserRepository(string userId)
         {
             var user = await _context.Users.FirstOrDefaultAsync(h => h.Id == userId);
 
@@ -39,7 +41,31 @@ namespace movie_reviews.Server.Repository
 
             await _context.SaveChangesAsync();
 
-            return user;
+            return (AppUser)user;
+        }
+
+        public async Task<AppUser> GetUserByIdRepository(string userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(h => h.Id == userId);
+
+            if(user == null )
+            {
+                return null;
+            }
+
+            return (AppUser)user;
+        }
+
+        public async Task<ICollection<Review>> GetUserWithReviewsRepository(string userId)
+        {
+            var userReviews = await _context.Reviews.Where(x => x.AppUserId == userId).ToListAsync();
+
+            if (userReviews == null)
+            {
+                return null;
+            }
+
+            return userReviews;
         }
     }
 }

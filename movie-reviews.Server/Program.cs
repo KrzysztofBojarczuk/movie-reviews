@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using movie_reviews.Server.Data;
 using movie_reviews.Server.Interfaces;
+using movie_reviews.Server.models;
 using movie_reviews.Server.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,21 +14,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddScoped<IUserRepository, UsersRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
 builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationBuilder();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentityCore<IdentityUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddApiEndpoints();
+builder.Services.AddIdentityCore<AppUser>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddApiEndpoints();
 
 var app = builder.Build();
+
+app.MapIdentityApi<AppUser>();
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -52,6 +58,5 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
-app.MapIdentityApi<IdentityUser>();
 
 app.Run();
