@@ -23,11 +23,48 @@ namespace movie_reviews.Server.Repository
             return review;
         }
 
-        public async Task<ICollection<Review>> GetAllRepositoryAsync()
+        public async Task<Review> DeleteReviewRepository(int id)
+        {
+            var review = await _context.Reviews.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(review == null)
+            {
+                return null;
+            }
+
+            _context.Reviews.Remove(review);
+
+            await _context.SaveChangesAsync();
+
+            return review;
+        }
+
+        public async Task<ICollection<Review>> GetAllReviewsRepository()
         {
             var query = await _context.Reviews.ToListAsync();
 
             return query;
+        }
+
+        public async Task<Review> GetReviewByIdRepository(int id)
+        {
+            var review = await _context.Reviews.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (review == null)
+            {
+                return null;
+            }
+
+            return review;
+        }
+
+        public async Task<Review> UpdateReviewRepository(Review updateReview)
+        {
+            _context.Reviews.Update(updateReview);
+
+            await _context.SaveChangesAsync();
+
+            return updateReview;
         }
     }
 }
