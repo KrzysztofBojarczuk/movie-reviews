@@ -1,0 +1,24 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+  <p-card [style]="{ width: '360px' }">
+    <form [formGroup]="loginForm">
+      <div class="field">
+        <label for="firstname1">Username</label>
+        <input
+          id="firstname1"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+      <div class="field">
+        <label for="lastname1">Password</label>
+        <input
+          id="lastname1"
+          type="text"
+          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        />
+      </div>
+
+      <p-button label="Sign In"></p-button>
+    </form>
+  </p-card>
+</div>
