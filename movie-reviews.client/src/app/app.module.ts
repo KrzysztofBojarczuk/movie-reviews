@@ -17,9 +17,10 @@ import { PasswordModule } from 'primeng/password';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
-  declarations: [AppComponent, UserstableComponent, LoginComponent],
+  declarations: [AppComponent, UserstableComponent, LoginComponent, TableComponent],
   imports: [
     CardModule,
     ReactiveFormsModule,

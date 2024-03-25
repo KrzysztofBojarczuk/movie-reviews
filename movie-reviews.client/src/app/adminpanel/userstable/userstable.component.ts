@@ -16,6 +16,13 @@ import {
 export class UserstableComponent {
   users: User[] = [];
 
+  public columns = [
+    { field: 'id', header: 'Id' },
+    { field: 'userName', header: 'Name' },
+    { field: 'email', header: 'Email' },
+    { field: 'action', header: 'Action' },
+  ];
+
   constructor(
     private usersService: UsersService,
     private confirmationService: ConfirmationService,
@@ -28,6 +35,7 @@ export class UserstableComponent {
 
   getAllUsers() {
     this.usersService.getAllUserServices().subscribe((result) => {
+      console.log('color: #007acc;', result);
       this.users = result;
     });
   }

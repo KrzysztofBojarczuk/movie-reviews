@@ -10,5 +10,6 @@ namespace movie_reviews.Server.Interfaces
         Task<Review> UpdateReviewRepository(Review updateReview);
         Task<Review> DeleteReviewRepository(int id);
         Task<Review> GetReviewByIdRepository(int id);
+        Task<int> GetNumberReviewsByUserIdRepository(string id);
     }
 }
