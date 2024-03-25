@@ -74,6 +74,19 @@ namespace movie_reviews.Server.Controllers
             return NoContent();
         }
 
+        [HttpGet("Get/CountReviewsByUserId/{userId}")]
+        public async Task<IActionResult> GetNumberReviewsByUserId(string userId)
+        {
+            var reviewsCount = await _reviewRepository.GetNumberReviewsByUserIdRepository(userId);
+
+            if (reviewsCount == null)
+            {
+                return NotFound(); 
+            }
+
+            return Ok(reviewsCount);
+        }
+
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteReview(int id)
         {
