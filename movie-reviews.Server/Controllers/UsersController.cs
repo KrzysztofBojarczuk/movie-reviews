@@ -49,5 +49,19 @@ namespace movie_reviews.Server.Controllers
 
             return Ok(userReview);
         }
+
+        [HttpGet("Get/UserNumber")]
+        public async Task<IActionResult> GetNumberUsers()
+        {
+            var userNumber = await _usersRepository.GetNumberUsersRepository();
+
+            if (userNumber == null)
+            {
+
+                return NotFound();
+            }
+
+            return Ok(userNumber);
+        }
     }
 }

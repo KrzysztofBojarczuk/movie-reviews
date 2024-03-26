@@ -10,5 +10,6 @@ namespace movie_reviews.Server.Interfaces
         Task<AppUser> DeleteUserRepository(string id);
         Task<ICollection<Review>> GetUserWithReviewsRepository(string userId);
         Task<AppUser> GetUserByIdRepository(string userId);
+        Task<int> GetNumberUsersRepository();
     }
 }
