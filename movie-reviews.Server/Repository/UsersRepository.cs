@@ -37,6 +37,10 @@ namespace movie_reviews.Server.Repository
                 return null;
             }
 
+            var reviewsToDelete = await _context.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+
+            _context.Reviews.RemoveRange(reviewsToDelete);
+
             _context.Users.Remove(user);
 
             await _context.SaveChangesAsync();
@@ -66,6 +70,13 @@ namespace movie_reviews.Server.Repository
             }
 
             return userReviews;
+        }
+
+        public async Task<int> GetNumberUsersRepository()
+        {
+            var userNumber = await _context.Users.CountAsync();
+
+            return userNumber;
         }
     }
 }
