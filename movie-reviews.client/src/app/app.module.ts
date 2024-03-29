@@ -18,9 +18,16 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableComponent } from './table/table.component';
-
+import { TablereviewsComponent } from './reviews/tablereviews/tablereviews.component';
+import { TabViewModule } from 'primeng/tabview';
 @NgModule({
-  declarations: [AppComponent, UserstableComponent, LoginComponent, TableComponent],
+  declarations: [
+    AppComponent,
+    UserstableComponent,
+    LoginComponent,
+    TableComponent,
+    TablereviewsComponent,
+  ],
   imports: [
     CardModule,
     ReactiveFormsModule,
@@ -36,6 +43,7 @@ import { TableComponent } from './table/table.component';
     InputGroupModule,
     InputGroupAddonModule,
     PasswordModule,
+    TabViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
