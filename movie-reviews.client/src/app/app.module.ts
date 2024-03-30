@@ -20,6 +20,9 @@ import { CardModule } from 'primeng/card';
 import { TableComponent } from './table/table.component';
 import { TablereviewsComponent } from './reviews/tablereviews/tablereviews.component';
 import { TabViewModule } from 'primeng/tabview';
+import { FormreviewsComponent } from './reviews/formreviews/formreviews.component';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,7 @@ import { TabViewModule } from 'primeng/tabview';
     LoginComponent,
     TableComponent,
     TablereviewsComponent,
+    FormreviewsComponent,
   ],
   imports: [
     CardModule,
@@ -44,8 +48,9 @@ import { TabViewModule } from 'primeng/tabview';
     InputGroupAddonModule,
     PasswordModule,
     TabViewModule,
+    DynamicDialogModule,
   ],
-  providers: [],
+  providers: [DialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
