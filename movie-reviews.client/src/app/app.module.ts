@@ -22,6 +22,7 @@ import { TablereviewsComponent } from './reviews/tablereviews/tablereviews.compo
 import { TabViewModule } from 'primeng/tabview';
 import { FormreviewsComponent } from './reviews/formreviews/formreviews.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
     PasswordModule,
     TabViewModule,
     DynamicDialogModule,
+    InputTextModule,
   ],
   providers: [DialogService],
   bootstrap: [AppComponent],
