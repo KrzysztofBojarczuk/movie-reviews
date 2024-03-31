@@ -1,2 +1,13 @@
-<p-button (onClick)="openFormModal()" label="Submit">Add review</p-button>
-<p>tablereviews works!</p>
+<p-button (onClick)="openFormModal()" label="Add review"></p-button>
+
+<div *ngFor="let item of review" class="card flex justify-content-center">
+  <div style="width: 700px; margin-top: 10px">
+    <p-card>
+      <p class="m-0">
+        {{ item.title }}
+      </p>
+      <p class="m-0">{{ item.text }}</p>
+      <p class="m-0">{{ item.rating }}</p>
+    </p-card>
+  </div>
+</div>
