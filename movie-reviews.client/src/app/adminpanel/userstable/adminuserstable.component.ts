@@ -8,12 +8,12 @@ import {
 } from 'primeng/api';
 
 @Component({
-  selector: 'app-userstable',
-  templateUrl: './userstable.component.html',
-  styleUrl: './userstable.component.css',
+  selector: 'app-adminuserstable',
+  templateUrl: './adminuserstable.component.html',
+  styleUrl: './adminuserstable.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class UserstableComponent {
+export class AdminuserstableComponent {
   users: User[] = [];
 
   public columns = [

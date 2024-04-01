@@ -31,12 +31,12 @@ namespace movie_reviews.Server.Controllers
             return Ok(reviewGet);
         }
 
-        [HttpPost("Post/{userId}")]
-        public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review, string userId)
+        [HttpPost("Post")]
+        public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review)
         {
             var reviewCreate = _mapper.Map<Review>(review);
 
-            reviewCreate.AppUserId = userId;
+            //reviewCreate.AppUserId = userId;
 
             await _reviewRepository.CreateReviewRepository(reviewCreate);
 
