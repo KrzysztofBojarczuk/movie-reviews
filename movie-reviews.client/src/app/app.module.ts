@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { UserstableComponent } from './adminpanel/userstable/userstable.component';
+import { AdminuserstableComponent } from './adminpanel/userstable/adminuserstable.component';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,20 +18,20 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableComponent } from './table/table.component';
-import { TablereviewsComponent } from './reviews/tablereviews/tablereviews.component';
+import { AdmintablereviewsComponent } from './adminpanel/admintablereviews/admintablereviews.component';
 import { TabViewModule } from 'primeng/tabview';
-import { FormreviewsComponent } from './reviews/formreviews/formreviews.component';
+import { AdminformreviewsComponent } from './adminpanel/adminformreviews/adminformreviews.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserstableComponent,
+    AdminuserstableComponent,
     LoginComponent,
     TableComponent,
-    TablereviewsComponent,
-    FormreviewsComponent,
+    AdmintablereviewsComponent,
+    AdminformreviewsComponent,
   ],
   imports: [
     CardModule,

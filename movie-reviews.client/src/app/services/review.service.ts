@@ -11,15 +11,15 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
-  getAlReviews(): Observable<Review[]> {
+  getAlReviewsService(): Observable<Review[]> {
     return this.http.get<Review[]>(this.apiUrl + 'Review');
   }
 
-  createReview(review: Review): Observable<Review> {
+  createReviewService(review: Review): Observable<Review> {
     return this.http.post<Review>(this.apiUrl + 'Review/Post', review);
   }
 
-  deleteReview(id: string): Observable<number> {
+  deleteReviewService(id: string): Observable<number> {
     return this.http.delete<number>(`${this.apiUrl}Review/Delete/${id}`);
   }
 }

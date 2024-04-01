@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { FormreviewsComponent } from '../formreviews/formreviews.component';
+import { AdminformreviewsComponent } from '../adminformreviews/adminformreviews.component';
 import { Review } from '../../models/review';
 import { ReviewService } from '../../services/review.service';
 
 @Component({
-  selector: 'app-tablereviews',
-  templateUrl: './tablereviews.component.html',
-  styleUrl: './tablereviews.component.css',
+  selector: 'app-admintablereviews',
+  templateUrl: './admintablereviews.component.html',
+  styleUrl: './admintablereviews.component.css',
 })
-export class TablereviewsComponent {
+export class AdmintablereviewsComponent {
   ref: DynamicDialogRef | undefined;
 
   review: Review[] = [];
@@ -24,14 +24,14 @@ export class TablereviewsComponent {
   }
 
   openFormModal() {
-    const ref = this.dialogService.open(FormreviewsComponent, {
+    const ref = this.dialogService.open(AdminformreviewsComponent, {
       header: 'AddReview',
       width: '70%',
     });
   }
 
   getReviews() {
-    this.reviewService.getAlReviews().subscribe((result) => {
+    this.reviewService.getAlReviewsService().subscribe((result) => {
       this.review = result;
     });
   }
