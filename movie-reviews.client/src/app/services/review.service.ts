@@ -19,7 +19,7 @@ export class ReviewService {
     return this.http.post<Review>(this.apiUrl + 'Review/Post', review);
   }
 
-  deleteReviewService(id: string): Observable<number> {
+  deleteReviewService(id: number): Observable<number> {
     return this.http.delete<number>(`${this.apiUrl}Review/Delete/${id}`);
   }
 }

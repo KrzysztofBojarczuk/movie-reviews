@@ -8,6 +8,9 @@
       </p>
       <p class="m-0">{{ item.text }}</p>
       <p class="m-0">{{ item.rating }}</p>
+      <p-button (onClick)="deleteReview(item.id)">Delete Review</p-button>
     </p-card>
   </div>
 </div>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
