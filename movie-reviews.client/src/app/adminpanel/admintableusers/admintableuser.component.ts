@@ -8,12 +8,12 @@ import {
 } from 'primeng/api';
 
 @Component({
-  selector: 'app-adminuserstable',
-  templateUrl: './adminuserstable.component.html',
-  styleUrl: './adminuserstable.component.css',
+  selector: 'app-admintableuser',
+  templateUrl: './admintableuser.component.html',
+  styleUrl: './admintableuser.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class AdminuserstableComponent {
+export class AdmintableuserComponent {
   users: User[] = [];
 
   public columns = [
@@ -35,7 +35,6 @@ export class AdminuserstableComponent {
 
   getAllUsers() {
     this.usersService.getAllUserServices().subscribe((result) => {
-      console.log('color: #007acc;', result);
       this.users = result;
     });
   }

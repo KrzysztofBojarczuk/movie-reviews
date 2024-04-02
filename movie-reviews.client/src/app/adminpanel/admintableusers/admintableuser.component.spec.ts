@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminuserstableComponent } from './adminuserstable.component';
+import { AdmintableuserComponent } from './admintableuser.component';
 
 describe('UserstableComponent', () => {
-  let component: AdminuserstableComponent;
-  let fixture: ComponentFixture<AdminuserstableComponent>;
+  let component: AdmintableuserComponent;
+  let fixture: ComponentFixture<AdmintableuserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminuserstableComponent],
+      declarations: [AdmintableuserComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AdminuserstableComponent);
+    fixture = TestBed.createComponent(AdmintableuserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
