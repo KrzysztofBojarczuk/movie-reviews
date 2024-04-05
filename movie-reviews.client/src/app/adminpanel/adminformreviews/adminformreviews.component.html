@@ -1,74 +1,29 @@
-<!-- <form [formGroup]="reviewForm" (ngSubmit)="submit(reviewForm.value)">
-  <div class="field">
-    <label for="title">Title</label>
-    <input
-      id="title"
-      type="text"
-      formControlName="title"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-  <div class="Text">
-    <label for="text">Text</label>
-    <input
-      id="text"
-      type="text"
-      formControlName="text"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-  <div class="Rating">
-    <label for="rating">Rating</label>
-    <input
-      id="rating"
-      type="number"
-      formControlName="rating"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-
-  <div class="User">
-    <label for="appUserId">User ID</label>
-    <input
-      id="appUserId"
-      type="string"
-      formControlName="appUserId"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
-  </div>
-
-  <p-button
-    type="submit"
-    [disabled]="reviewForm.invalid"
-    label="Submit"
-  ></p-button>
-</form> -->
-
 <form [formGroup]="reviewForm" (ngSubmit)="submit(reviewForm.value)">
   <div class="field">
     <label for="title">Title</label>
     <input
-      id="title"
       type="text"
       formControlName="title"
+      pInputText
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
   <div class="Text">
     <label for="text">Text</label>
     <input
-      id="text"
       type="text"
       formControlName="text"
+      pInputText
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
   <div class="Rating">
     <label for="rating">Rating</label>
     <input
-      id="rating"
       type="number"
       formControlName="rating"
+      pInputText
+      pKeyFilter="int"
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
@@ -76,7 +31,6 @@
   <div class="User">
     <label for="userSelect">Select User</label>
     <select
-      id="userSelect"
       formControlName="appUserId"
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
       (change)="onReviewIdChange($event)"
@@ -90,9 +44,9 @@
   <div class="User">
     <label for="name">Name</label>
     <input
-      id="name"
       type="text"
       formControlName="userName"
+      pInputText
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
@@ -100,9 +54,9 @@
   <div class="User">
     <label for="email">Email</label>
     <input
-      id="email"
       type="email"
       formControlName="email"
+      pInputText
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>

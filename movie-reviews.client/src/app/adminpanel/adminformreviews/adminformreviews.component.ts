@@ -27,8 +27,8 @@ export class AdminformreviewsComponent {
       text: ['', Validators.required],
       rating: ['', Validators.required],
       appUserId: ['', Validators.required],
-      userName: ['', Validators.required],
-      email: ['', Validators.required],
+      userName: [{ value: '', disabled: true }, Validators.required],
+      email: [{ value: '', disabled: true }, Validators.required],
     });
   }
 
