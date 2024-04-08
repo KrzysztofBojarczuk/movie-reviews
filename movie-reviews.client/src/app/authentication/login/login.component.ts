@@ -15,8 +15,12 @@ export class LoginComponent {
     private authenticationService: AuthenticationService
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+
+  onSubmit(login: any) {
+    this.authenticationService.loginUserService(login).subscribe();
   }
 }

@@ -1,24 +1,28 @@
 <div class="flex justify-content-center align-items-center min-h-screen">
   <p-card [style]="{ width: '360px' }">
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
       <div class="field">
-        <label for="firstname1">Username</label>
+        <label for="email">Email</label>
         <input
-          id="firstname1"
           type="text"
+          formControlName="email"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
       </div>
       <div class="field">
-        <label for="lastname1">Password</label>
+        <label for="password">Password</label>
         <input
-          id="lastname1"
           type="text"
+          formControlName="password"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
       </div>
 
-      <p-button label="Sign In"></p-button>
+      <p-button
+        type="submit"
+        label="Sign In"
+        [disabled]="loginForm.invalid"
+      ></p-button>
     </form>
   </p-card>
 </div>
