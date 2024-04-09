@@ -36,6 +36,10 @@ export class AdmintablereviewsComponent {
       header: 'AddReview',
       width: '70%',
     });
+
+    ref.onClose.subscribe(() => {
+      this.getReviews();
+    });
   }
 
   getReviews() {
