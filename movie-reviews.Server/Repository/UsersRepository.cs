@@ -30,14 +30,14 @@ namespace movie_reviews.Server.Repository
 
         public async Task<AppUser> DeleteUserRepository(string userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(h => h.Id == userId);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
 
             if(user == null)
             {
                 return null;
             }
 
-            var reviewsToDelete = await _context.Reviews.Where(r => r.AppUserId == userId).ToListAsync();
+            var reviewsToDelete = await _context.Reviews.Where(x => x.AppUserId == userId).ToListAsync();
 
             _context.Reviews.RemoveRange(reviewsToDelete);
 
@@ -50,7 +50,7 @@ namespace movie_reviews.Server.Repository
 
         public async Task<AppUser> GetUserByIdRepository(string userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(h => h.Id == userId);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
 
             if(user == null )
             {
