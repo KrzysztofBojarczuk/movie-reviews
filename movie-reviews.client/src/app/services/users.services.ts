@@ -18,4 +18,10 @@ export class UsersService {
   deleteUserService(id: string): Observable<string> {
     return this.http.delete<string>(`${this.apiUrl}Users/Delete/${id}`);
   }
+
+  getNumberOfReviewsService(id: string): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}Review/Get/CountReviewsByUserId/${id}`
+    );
+  }
 }
