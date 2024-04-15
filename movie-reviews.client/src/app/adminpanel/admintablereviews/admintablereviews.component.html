@@ -1,17 +1,27 @@
-<p-button (onClick)="openFormModal()" label="Add review"></p-button>
+<p-button
+  pRipple
+  class="p-button-success"
+  (onClick)="openFormModal()"
+  label="Add review"
+></p-button>
 
-<div *ngFor="let item of review" class="card flex justify-content-center">
-  <div style="width: 700px; margin-top: 10px">
+<div class="grid" style="margin-top: 10px">
+  <div *ngFor="let item of review" class="col-3">
     <p-card>
-      <p class="m-0">
+      <p class="m-2">
         {{ item.title }}
       </p>
-      <p class="m-0">{{ item.text }}</p>
-      <p class="m-0">{{ item.rating }}</p>
-      <p-button (onClick)="deleteReview(item.id)">Delete Review</p-button>
+      <p class="m-2">{{ item.text }}</p>
+      <p class="m-2">{{ item.rating }}</p>
+      <p-button
+        label="Delete review"
+        severity="danger"
+        (onClick)="deleteReview(item.id)"
+      ></p-button>
     </p-card>
   </div>
 </div>
+
 <h1 *ngIf="review?.length === 0">No Reviews</h1>
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>

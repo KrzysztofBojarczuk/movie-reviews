@@ -23,6 +23,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { AdminformreviewsComponent } from './adminpanel/adminformreviews/adminformreviews.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { RegisterComponent } from './authentication/register/register.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { InputTextModule } from 'primeng/inputtext';
     TableComponent,
     AdmintablereviewsComponent,
     AdminformreviewsComponent,
+    RegisterComponent,
   ],
   imports: [
     CardModule,
