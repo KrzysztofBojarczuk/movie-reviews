@@ -78,5 +78,12 @@ namespace movie_reviews.Server.Repository
 
             return userNumber;
         }
+
+        public async Task<ICollection<string>> GetAllUserEmailsRepository()
+        {
+            var userEamils = await _context.Users.Select(x => x.Email).ToListAsync();
+
+            return userEamils;
+        }
     }
 }

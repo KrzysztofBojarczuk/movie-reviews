@@ -11,5 +11,6 @@ namespace movie_reviews.Server.Interfaces
         Task<ICollection<Review>> GetUserWithReviewsRepository(string userId);
         Task<AppUser> GetUserByIdRepository(string userId);
         Task<int> GetNumberUsersRepository();
+        Task<ICollection<string>> GetAllUserEmailsRepository();
     }
 }
