@@ -43,7 +43,6 @@ namespace movie_reviews.Server.Controllers
 
             if(userReview == null)
             {
-
                 return NotFound();
             }
 
@@ -57,11 +56,23 @@ namespace movie_reviews.Server.Controllers
 
             if (userNumber == null)
             {
-
                 return NotFound();
             }
 
             return Ok(userNumber);
+        }
+
+        [HttpGet("Get/UserEmails")]
+        public async Task<IActionResult> GetUserEmails()
+        {
+            var userEmails = await _usersRepository.GetAllUserEmailsRepository();
+
+            if(userEmails == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userEmails);
         }
     }
 }
