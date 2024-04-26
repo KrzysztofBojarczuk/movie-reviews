@@ -11,7 +11,9 @@
       <p class="m-2">
         {{ item.title }}
       </p>
-      <p class="m-2">{{ item.text }}</p>
+      <p class="m-2" style="overflow-wrap: break-word; text-align: justify">
+        {{ item.text }}
+      </p>
       <p class="m-2">{{ item.rating }}</p>
       <p-button
         label="Delete review"
