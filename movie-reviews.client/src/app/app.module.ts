@@ -24,6 +24,7 @@ import { AdminformreviewsComponent } from './adminpanel/adminformreviews/adminfo
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RegisterComponent } from './authentication/register/register.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { RegisterComponent } from './authentication/register/register.component'
     TabViewModule,
     DynamicDialogModule,
     InputTextModule,
+    InputTextareaModule,
   ],
   providers: [DialogService],
   bootstrap: [AppComponent],
