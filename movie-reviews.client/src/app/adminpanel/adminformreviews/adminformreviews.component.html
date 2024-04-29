@@ -22,13 +22,14 @@
   </div>
   <div class="Rating">
     <label for="rating">Rating</label>
-    <input
-      type="number"
+    <p-inputNumber
+      inputId="integeronly"
       formControlName="rating"
-      pInputText
-      pKeyFilter="int"
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
+      [min]="0"
+      [max]="10"
+      class="text-base text-color surface-overlay surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    >
+    </p-inputNumber>
   </div>
 
   <div class="User">
@@ -65,6 +66,7 @@
   </div>
 
   <p-button
+    [style]="{ 'margin-top.px': 20 }"
     type="submit"
     [disabled]="reviewForm.invalid"
     label="Submit"
