@@ -10,6 +10,7 @@ namespace movie_reviews.Server.models
         public string? Title { get; set; }
         public string? Text { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [Range(0, 10)]
         public int? Rating { get; set; }
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }

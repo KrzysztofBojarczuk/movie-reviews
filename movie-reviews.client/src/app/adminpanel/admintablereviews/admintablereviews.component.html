@@ -9,7 +9,9 @@
   <div *ngFor="let item of review" class="col-3">
     <p-card>
       <p class="m-2">
-        {{ item.title }}
+        <b>
+          {{ item.title }}
+        </b>
       </p>
       <p class="m-2" style="overflow-wrap: break-word; text-align: justify">
         {{ item.text }}

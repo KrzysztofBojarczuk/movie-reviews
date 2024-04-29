@@ -25,6 +25,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RegisterComponent } from './authentication/register/register.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     DynamicDialogModule,
     InputTextModule,
     InputTextareaModule,
+    InputNumberModule,
   ],
   providers: [DialogService],
   bootstrap: [AppComponent],
