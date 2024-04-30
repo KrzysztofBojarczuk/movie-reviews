@@ -31,7 +31,7 @@ namespace movie_reviews.Server.Controllers
             return Ok(reviewGet);
         }
 
-        [HttpPost("Post")]
+        [HttpPost()]
         public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review)
         {
             var reviewCreate = _mapper.Map<Review>(review);
@@ -45,7 +45,7 @@ namespace movie_reviews.Server.Controllers
             return CreatedAtAction(nameof(GetReviewById), new { id = reviewCreate.Id }, reviewGet);
         }
 
-        [HttpGet("Get/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetReviewById(int id)
         {
             var review = await _reviewRepository.GetReviewByIdRepository(id);
@@ -60,7 +60,7 @@ namespace movie_reviews.Server.Controllers
             return Ok(reviewGet);
         }
 
-        [HttpPut("Put/{id}/{userId}")]
+        [HttpPut("{id}/{userId}")]
         public async Task<IActionResult> UpdateReview([FromBody] ReviewCreateDto review, int id, string userId)
         {
             var toUpdateReview = _mapper.Map<Review>(review);
@@ -74,7 +74,7 @@ namespace movie_reviews.Server.Controllers
             return NoContent();
         }
 
-        [HttpGet("Get/CountReviewsByUserId/{userId}")]
+        [HttpGet("CountReviewsByUserId/{userId}")]
         public async Task<IActionResult> GetNumberReviewsByUserId(string userId)
         {
             var reviewsCount = await _reviewRepository.GetNumberReviewsByUserIdRepository(userId);
@@ -87,7 +87,7 @@ namespace movie_reviews.Server.Controllers
             return Ok(reviewsCount);
         }
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview(int id)
         {
             var deleteReview = await _reviewRepository.DeleteReviewRepository(id);

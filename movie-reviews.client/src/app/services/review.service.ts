@@ -7,19 +7,19 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root',
 })
 export class ReviewService {
-  private apiUrl = 'https://localhost:7068/api/';
+  private apiUrl = 'https://localhost:7068/api/Review/';
 
   constructor(private http: HttpClient) {}
 
   getAlReviewsService(): Observable<Review[]> {
-    return this.http.get<Review[]>(this.apiUrl + 'Review');
+    return this.http.get<Review[]>(this.apiUrl);
   }
 
   createReviewService(review: Review): Observable<Review> {
-    return this.http.post<Review>(this.apiUrl + 'Review/Post', review);
+    return this.http.post<Review>(this.apiUrl, review);
   }
 
   deleteReviewService(id: number): Observable<number> {
-    return this.http.delete<number>(`${this.apiUrl}Review/Delete/${id}`);
+    return this.http.delete<number>(`${this.apiUrl}${id}`);
   }
 }
