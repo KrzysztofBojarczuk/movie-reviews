@@ -16,6 +16,7 @@ import {
 export class AdmintableuserComponent {
   users: User[] = [];
   value = '';
+  userNumber: number = 0;
 
   public columns = [
     { field: 'id', header: 'Id' },
@@ -32,6 +33,13 @@ export class AdmintableuserComponent {
 
   ngOnInit() {
     this.getAllUsers();
+    this.getNumberOfUsers();
+  }
+
+  getNumberOfUsers() {
+    this.usersService.numberOfUsersService().subscribe((result) => {
+      this.userNumber = result;
+    });
   }
 
   clearFilter() {

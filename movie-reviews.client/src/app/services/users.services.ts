@@ -21,9 +21,7 @@ export class UsersService {
     return this.http.delete<string>(`${this.apiUrl}${id}`);
   }
 
-  getNumberOfReviewsService(id: string): Observable<number> {
-    return this.http.get<number>(
-      `${this.apiUrl}Review/Get/CountReviewsByUserId/${id}`
-    );
+  numberOfUsersService(): Observable<number> {
+    return this.http.get<number>(this.apiUrl + `UserNumber`);
   }
 }
