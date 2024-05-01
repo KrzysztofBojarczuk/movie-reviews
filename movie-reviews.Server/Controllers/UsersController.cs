@@ -16,14 +16,14 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetAllUsers")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers(string searchTerm = null)
         {
-            var users = await _usersRepository.GettAllUsersRepository();
+            var users = await _usersRepository.GettAllUsersRepository(searchTerm);
 
             return Ok(users);
         }
 
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var deleteUser = await _usersRepository.DeleteUserRepository(id);
@@ -49,7 +49,7 @@ namespace movie_reviews.Server.Controllers
             return Ok(userReview);
         }
 
-        [HttpGet("Get/UserNumber")]
+        [HttpGet("UserNumber")]
         public async Task<IActionResult> GetNumberUsers()
         {
             var userNumber = await _usersRepository.GetNumberUsersRepository();
@@ -62,7 +62,7 @@ namespace movie_reviews.Server.Controllers
             return Ok(userNumber);
         }
 
-        [HttpGet("Get/UserEmails")]
+        [HttpGet("UserEmails")]
         public async Task<IActionResult> GetUserEmails()
         {
             var userEmails = await _usersRepository.GetAllUserEmailsRepository();

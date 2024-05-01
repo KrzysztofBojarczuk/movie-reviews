@@ -6,7 +6,7 @@ namespace movie_reviews.Server.Interfaces
 {
     public interface IUserRepository
     {
-        Task<ICollection<AppUser>> GettAllUsersRepository();
+        Task<ICollection<AppUser>> GettAllUsersRepository(string? searchTerm);
         Task<AppUser> DeleteUserRepository(string id);
         Task<ICollection<Review>> GetUserWithReviewsRepository(string userId);
         Task<AppUser> GetUserByIdRepository(string userId);

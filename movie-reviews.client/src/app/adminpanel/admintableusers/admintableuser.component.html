@@ -1,3 +1,21 @@
+<div class="flex flex-row flex-wrap gap-3" style="margin-bottom: 10px">
+  <span class="p-input-icon-right">
+    <i class="pi pi-times-circle" (click)="clearFilter()"></i>
+    <input type="text" pInputText [(ngModel)]="value" />
+    <!-- <input
+    type="text"
+    pInputText
+    [(ngModel)]="value"
+    (input)="getAllUsers(value)"
+  /> -->
+  </span>
+  <p-button
+    label="Search"
+    severity="secondary"
+    (click)="getAllUsers(value)"
+  ></p-button>
+</div>
+
 <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">
     <tr>

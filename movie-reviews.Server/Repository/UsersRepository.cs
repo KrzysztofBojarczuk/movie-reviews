@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using movie_reviews.Server.Data;
 using movie_reviews.Server.Interfaces;
 using movie_reviews.Server.models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace movie_reviews.Server.Repository
 {
@@ -16,16 +18,21 @@ namespace movie_reviews.Server.Repository
             _context = context;
         }
 
-        public async Task<ICollection<AppUser>> GettAllUsersRepository()
+        public async Task<ICollection<AppUser>> GettAllUsersRepository(string searchTerm)
         {
-            var users = await _context.Users.ToListAsync();
+            var query = await _context.Users.ToListAsync();
 
-            if(users == null)
+            if (!searchTerm.IsNullOrEmpty())
+            {
+                query = query.Where(x => x.UserName.Contains(searchTerm) || x.Email.Contains(searchTerm)).ToList();
+            }
+
+            if (query == null)
             {
                 return null;
             }
 
-            return (ICollection<AppUser>)users;
+            return (ICollection<AppUser>)query;
         }
 
         public async Task<AppUser> DeleteUserRepository(string userId)
