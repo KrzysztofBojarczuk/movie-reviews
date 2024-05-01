@@ -22,4 +22,8 @@ export class ReviewService {
   deleteReviewService(id: number): Observable<number> {
     return this.http.delete<number>(`${this.apiUrl}${id}`);
   }
+
+  getNumberOfReviewsService(id: string): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}CountReviewsByUserId/${id}`);
+  }
 }

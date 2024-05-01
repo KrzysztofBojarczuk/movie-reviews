@@ -7,16 +7,18 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UsersService {
-  private apiUrl = 'https://localhost:7068/api/';
+  private apiUrl = 'https://localhost:7068/api/Users/';
 
   constructor(private http: HttpClient) {}
 
-  getAllUserServices(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl + 'Users/GetAllUsers');
+  getAllUserServices(searchTerm?: string): Observable<User[]> {
+    return this.http.get<User[]>(
+      this.apiUrl + `GetAllUsers?searchTerm=${searchTerm}`
+    );
   }
 
   deleteUserService(id: string): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl}Users/Delete/${id}`);
+    return this.http.delete<string>(`${this.apiUrl}${id}`);
   }
 
   getNumberOfReviewsService(id: string): Observable<number> {

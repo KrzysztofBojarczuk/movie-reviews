@@ -15,6 +15,7 @@ import {
 })
 export class AdmintableuserComponent {
   users: User[] = [];
+  value = '';
 
   public columns = [
     { field: 'id', header: 'Id' },
@@ -33,8 +34,13 @@ export class AdmintableuserComponent {
     this.getAllUsers();
   }
 
-  getAllUsers() {
-    this.usersService.getAllUserServices().subscribe((result) => {
+  clearFilter() {
+    this.value = '';
+    this.getAllUsers(this.value);
+  }
+
+  getAllUsers(searchTerm = '') {
+    this.usersService.getAllUserServices(searchTerm).subscribe((result) => {
       this.users = result;
     });
   }
