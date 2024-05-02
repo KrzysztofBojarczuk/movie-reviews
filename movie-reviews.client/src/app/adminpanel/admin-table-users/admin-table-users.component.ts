@@ -8,12 +8,12 @@ import {
 import { UsersService } from '../../services/users.service';
 
 @Component({
-  selector: 'app-admin-table-user',
-  templateUrl: './admin-table-user.component.html',
-  styleUrl: './admin-table-user.component.css',
+  selector: 'app-admin-table-users',
+  templateUrl: './admin-table-users.component.html',
+  styleUrl: './admin-table-users.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class AdminTableUserComponent {
+export class AdminTableUsersComponent {
   users: User[] = [];
   value = '';
   userNumber: number = 0;
