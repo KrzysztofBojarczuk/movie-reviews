@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdmintableuserComponent } from './adminpanel/admintableusers/admintableuser.component';
-import { AdmintablereviewsComponent } from './adminpanel/admintablereviews/admintablereviews.component';
+import { AdminTableUserComponent } from './adminpanel/admin-tableusers/admin-table-user.component';
+import { AdminTableReviewsComponent } from './adminpanel/admin-table-reviews/admin-table-reviews.component';
 
 const routes: Routes = [
-  { path: '', component: AdmintableuserComponent },
+  { path: '', component: AdminTableUserComponent },
   {
     path: 'reviews',
-    component: AdmintablereviewsComponent,
+    component: AdminTableReviewsComponent,
   },
 ];
 

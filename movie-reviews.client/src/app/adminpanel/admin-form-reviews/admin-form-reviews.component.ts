@@ -3,15 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../../models/review';
 import { ReviewService } from '../../services/review.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UsersService } from '../../services/users.services';
+import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user';
 
 @Component({
-  selector: 'app-adminformreviews',
-  templateUrl: './adminformreviews.component.html',
-  styleUrl: './adminformreviews.component.css',
+  selector: 'app-admin-form-reviews',
+  templateUrl: './admin-form-reviews.component.html',
+  styleUrl: './admin-form-reviews.component.css',
 })
-export class AdminformreviewsComponent {
+export class AdminFormReviewsComponent {
   reviewForm: FormGroup;
   users: User[] = [];
 

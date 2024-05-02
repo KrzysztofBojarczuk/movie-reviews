@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { AdminformreviewsComponent } from '../adminformreviews/adminformreviews.component';
+import { AdminFormReviewsComponent } from '../admin-form-reviews/admin-form-reviews.component';
 import { Review } from '../../models/review';
 import { ReviewService } from '../../services/review.service';
 import {
@@ -10,15 +10,16 @@ import {
 } from 'primeng/api';
 
 @Component({
-  selector: 'app-admintablereviews',
-  templateUrl: './admintablereviews.component.html',
-  styleUrl: './admintablereviews.component.css',
+  selector: 'app-admin-table-reviews',
+  templateUrl: './admin-table-reviews.component.html',
+  styleUrl: './admin-table-reviews.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class AdmintablereviewsComponent {
+export class AdminTableReviewsComponent {
   ref: DynamicDialogRef | undefined;
 
   review: Review[] = [];
+  numberOfReviews: number = 0;
 
   constructor(
     private dialogService: DialogService,
@@ -29,16 +30,24 @@ export class AdmintablereviewsComponent {
 
   ngOnInit(): void {
     this.getReviews();
+    this.getNumberOfReviews();
   }
 
   openFormModal() {
-    const ref = this.dialogService.open(AdminformreviewsComponent, {
+    const ref = this.dialogService.open(AdminFormReviewsComponent, {
       header: 'AddReview',
       width: '70%',
     });
 
     ref.onClose.subscribe(() => {
       this.getReviews();
+      this.getNumberOfReviews();
+    });
+  }
+
+  getNumberOfReviews() {
+    this.reviewService.getNumberOfReviewsService().subscribe((result) => {
+      this.numberOfReviews = result;
     });
   }
 
@@ -65,6 +74,7 @@ export class AdmintablereviewsComponent {
             detail: 'Review deleted successfully',
           });
           this.getReviews();
+          this.getNumberOfReviews();
         });
       },
       reject: () => {

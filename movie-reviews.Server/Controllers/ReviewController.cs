@@ -21,6 +21,7 @@ namespace movie_reviews.Server.Controllers
             _reviewRepository = reviewRepository;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> GetAllReviews()
         {
@@ -29,6 +30,19 @@ namespace movie_reviews.Server.Controllers
             var reviewGet = _mapper.Map<List<Review>>(review);
 
             return Ok(reviewGet);
+        }
+
+        [HttpGet("GetNumberOfReviews")]
+        public async Task<IActionResult> GetNumberOfReviews()
+        {
+            var reviews = await _reviewRepository.GetNumberOfReviewsRepository();
+
+            if(reviews == null)
+            { 
+                return NotFound(); 
+            }
+
+            return Ok(reviews);
         }
 
         [HttpPost()]

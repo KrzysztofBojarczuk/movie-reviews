@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdmintablereviewsComponent } from './admintablereviews.component';
+import { AdminTableReviewsComponent } from './admin-table-reviews.component';
 
 describe('TablereviewsComponent', () => {
-  let component: AdmintablereviewsComponent;
-  let fixture: ComponentFixture<AdmintablereviewsComponent>;
+  let component: AdminTableReviewsComponent;
+  let fixture: ComponentFixture<AdminTableReviewsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdmintablereviewsComponent],
+      declarations: [AdminTableReviewsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AdmintablereviewsComponent);
+    fixture = TestBed.createComponent(AdminTableReviewsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

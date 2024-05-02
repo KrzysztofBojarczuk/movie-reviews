@@ -23,7 +23,11 @@ export class ReviewService {
     return this.http.delete<number>(`${this.apiUrl}${id}`);
   }
 
-  getNumberOfReviewsService(id: string): Observable<number> {
+  getNumberOfReviewsByIdService(id: string): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}CountReviewsByUserId/${id}`);
+  }
+
+  getNumberOfReviewsService(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}GetNumberOfReviews`);
   }
 }

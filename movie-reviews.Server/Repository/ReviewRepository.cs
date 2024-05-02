@@ -46,6 +46,13 @@ namespace movie_reviews.Server.Repository
             return query;
         }
 
+        public async Task<int> GetNumberOfReviewsRepository()
+        {
+            var reviews = await _context.Reviews.CountAsync();
+
+            return reviews;
+        }
+
         public async Task<int> GetNumberReviewsByUserIdRepository(string id)
         {
             var reviewsCount = await _context.Reviews.CountAsync(x => x.AppUserId == id);

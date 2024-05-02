@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { AdmintableuserComponent } from './adminpanel/admintableusers/admintableuser.component';
+import { AdminTableUserComponent } from './adminpanel/admin-tableusers/admin-table-user.component';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,9 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableComponent } from './table/table.component';
-import { AdmintablereviewsComponent } from './adminpanel/admintablereviews/admintablereviews.component';
+import { AdminTableReviewsComponent } from './adminpanel/admin-table-reviews/admin-table-reviews.component';
 import { TabViewModule } from 'primeng/tabview';
-import { AdminformreviewsComponent } from './adminpanel/adminformreviews/adminformreviews.component';
+import { AdminFormReviewsComponent } from './adminpanel/admin-form-reviews/admin-form-reviews.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -30,11 +30,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
-    AdmintableuserComponent,
+    AdminTableUserComponent,
     LoginComponent,
     TableComponent,
-    AdmintablereviewsComponent,
-    AdminformreviewsComponent,
+    AdminTableReviewsComponent,
+    AdminFormReviewsComponent,
     RegisterComponent,
   ],
   imports: [
