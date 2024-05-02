@@ -1,11 +1,24 @@
-<p-button
-  pRipple
-  class="p-button-success"
-  (onClick)="openFormModal()"
-  label="Add review"
-></p-button>
+<div class="flex flex-row flex-wrap gap-3 m-3">
+  <p-button
+    pRipple
+    class="p-button-success"
+    (onClick)="openFormModal()"
+    label="Add review"
+  ></p-button>
 
-<div class="grid" style="margin-top: 10px">
+  <div
+    [ngClass]="{
+      'bg-primary': numberOfReviews <= 5,
+      'bg-green-700': numberOfReviews > 5,
+      'bg-red-500': numberOfReviews > 10
+    }"
+    class="border-round w-4rem h-2rem m-2 font-bold flex align-items-center justify-content-center text-white"
+  >
+    {{ numberOfReviews }}
+  </div>
+</div>
+
+<div class="grid">
   <div *ngFor="let item of review" class="col-3">
     <p-card>
       <p class="m-2">

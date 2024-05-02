@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../../services/users.services';
 import { User } from '../../models/user';
 import {
   ConfirmationService,
   MessageService,
   ConfirmEventType,
 } from 'primeng/api';
+import { UsersService } from '../../services/users.service';
 
 @Component({
-  selector: 'app-admintableuser',
-  templateUrl: './admintableuser.component.html',
-  styleUrl: './admintableuser.component.css',
+  selector: 'app-admin-table-user',
+  templateUrl: './admin-table-user.component.html',
+  styleUrl: './admin-table-user.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class AdmintableuserComponent {
+export class AdminTableUserComponent {
   users: User[] = [];
   value = '';
   userNumber: number = 0;
@@ -26,7 +26,7 @@ export class AdmintableuserComponent {
   ];
 
   constructor(
-    private usersService: UsersService,
+    private userService: UsersService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) {}
@@ -37,7 +37,7 @@ export class AdmintableuserComponent {
   }
 
   getNumberOfUsers() {
-    this.usersService.numberOfUsersService().subscribe((result) => {
+    this.userService.numberOfUsersService().subscribe((result) => {
       this.userNumber = result;
     });
   }
@@ -48,7 +48,7 @@ export class AdmintableuserComponent {
   }
 
   getAllUsers(searchTerm = '') {
-    this.usersService.getAllUserServices(searchTerm).subscribe((result) => {
+    this.userService.getAllUserServices(searchTerm).subscribe((result) => {
       this.users = result;
     });
   }
@@ -63,7 +63,7 @@ export class AdmintableuserComponent {
       rejectButtonStyleClass: 'p-button-text',
 
       accept: () => {
-        this.usersService.deleteUserService(id).subscribe((result) => {
+        this.userService.deleteUserService(id).subscribe((result) => {
           this.messageService.add({
             severity: 'info',
             summary: 'Success',

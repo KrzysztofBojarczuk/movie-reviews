@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getAllUserServices(searchTerm?: string): Observable<User[]> {
+  getAllUserServices(searchTerm: string = ''): Observable<User[]> {
     return this.http.get<User[]>(
       this.apiUrl + `GetAllUsers?searchTerm=${searchTerm}`
     );
