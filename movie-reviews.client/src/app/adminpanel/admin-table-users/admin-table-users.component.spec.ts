@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminTableUserComponent } from './admin-tableuser.component';
+import { AdminTableUsersComponent } from './admin-tableuser.component';
 
 describe('UserstableComponent', () => {
-  let component: AdminTableUserComponent;
-  let fixture: ComponentFixture<AdminTableUserComponent>;
+  let component: AdminTableUsersComponent;
+  let fixture: ComponentFixture<AdminTableUsersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminTableUserComponent],
+      declarations: [AdminTableUsersComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AdminTableUserComponent);
+    fixture = TestBed.createComponent(AdminTableUsersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

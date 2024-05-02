@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { AdminTableUserComponent } from './adminpanel/admin-tableusers/admin-table-user.component';
+import { AdminTableUsersComponent } from './adminpanel/admin-table-users/admin-table-users.component';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +30,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminTableUserComponent,
+    AdminTableUsersComponent,
     LoginComponent,
     TableComponent,
     AdminTableReviewsComponent,
