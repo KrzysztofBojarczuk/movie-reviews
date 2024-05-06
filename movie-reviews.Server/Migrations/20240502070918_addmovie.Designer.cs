@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using movie_reviews.Server.Data;
 
@@ -11,9 +12,11 @@ using movie_reviews.Server.Data;
 namespace movie_reviews.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240502070918_addmovie")]
+    partial class addmovie
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,6 +231,9 @@ namespace movie_reviews.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Releasetime")
                         .HasColumnType("datetime2");
 
@@ -235,6 +241,8 @@ namespace movie_reviews.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
 
                     b.ToTable("Movies");
                 });
@@ -325,6 +333,13 @@ namespace movie_reviews.Server.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("movie_reviews.Server.models.Movie", b =>
+                {
+                    b.HasOne("movie_reviews.Server.models.Movie", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("MovieId");
+                });
+
             modelBuilder.Entity("movie_reviews.Server.models.Review", b =>
                 {
                     b.HasOne("movie_reviews.Server.models.AppUser", "AppUser")
@@ -332,7 +347,7 @@ namespace movie_reviews.Server.Migrations
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("movie_reviews.Server.models.Movie", "Movie")
-                        .WithMany("Reviews")
+                        .WithMany()
                         .HasForeignKey("MovieId");
 
                     b.Navigation("AppUser");
@@ -347,7 +362,7 @@ namespace movie_reviews.Server.Migrations
 
             modelBuilder.Entity("movie_reviews.Server.models.Movie", b =>
                 {
-                    b.Navigation("Reviews");
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

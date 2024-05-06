@@ -10,6 +10,9 @@ namespace movie_reviews.Server.AutoMapper
         {
             CreateMap<ReviewCreateDto, Review>();
             CreateMap<Review, ReviewGetDto>();
+
+            CreateMap<MovieCreateDto, Movie>();
+            CreateMap<Movie, MovieGetDto>();
         }
     }
 }

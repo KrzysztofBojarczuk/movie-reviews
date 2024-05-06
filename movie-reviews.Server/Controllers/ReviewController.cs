@@ -64,7 +64,7 @@ namespace movie_reviews.Server.Controllers
         {
             var review = await _reviewRepository.GetReviewByIdRepository(id);
 
-            if(review == null)
+            if (review == null)
             {
                 return NotFound();
             }
