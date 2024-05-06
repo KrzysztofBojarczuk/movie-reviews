@@ -12,5 +12,6 @@ namespace movie_reviews.Server.Data
         { }
 
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Movie> Movies { get; set; }
     }
 }

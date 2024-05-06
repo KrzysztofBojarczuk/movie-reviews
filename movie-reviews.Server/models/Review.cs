@@ -15,5 +15,9 @@ namespace movie_reviews.Server.models
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
+        [ForeignKey("Movie")]
+        public int? MovieId { get; set; }
+        public Movie? Movie { get; set; }
+
     }
 }
