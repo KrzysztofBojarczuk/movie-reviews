@@ -19,6 +19,7 @@ export class AdminTableReviewsComponent {
   ref: DynamicDialogRef | undefined;
 
   review: Review[] = [];
+  value = '';
   numberOfReviews: number = 0;
 
   constructor(
@@ -51,10 +52,15 @@ export class AdminTableReviewsComponent {
     });
   }
 
-  getReviews() {
-    this.reviewService.getAlReviewsService().subscribe((result) => {
+  getReviews(searchTerm = '') {
+    this.reviewService.getAlReviewsService(searchTerm).subscribe((result) => {
       this.review = result;
     });
+  }
+
+  clearFilter() {
+    this.value = '';
+    this.getReviews(this.value);
   }
 
   deleteReview(id: number) {

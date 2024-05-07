@@ -23,9 +23,9 @@ namespace movie_reviews.Server.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllReviews()
+        public async Task<IActionResult> GetAllReviews(string searchTerm = null)
         {
-            var review = await _reviewRepository.GetAllReviewsRepository();
+            var review = await _reviewRepository.GetAllReviewsRepository(searchTerm);
 
             var reviewGet = _mapper.Map<List<Review>>(review);
 
