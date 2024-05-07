@@ -1,4 +1,14 @@
 <div class="flex flex-row flex-wrap gap-3 m-3">
+  <span class="p-input-icon-right">
+    <i class="pi pi-times-circle" (click)="clearFilter()"></i>
+    <input type="text" pInputText [(ngModel)]="value" />
+  </span>
+  <p-button
+    label="Search"
+    severity="secondary"
+    (click)="getReviews(value)"
+  ></p-button>
+
   <p-button
     pRipple
     class="p-button-success"
