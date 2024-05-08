@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using movie_reviews.Server.Data;
 using movie_reviews.Server.Interfaces;
@@ -40,21 +41,23 @@ namespace movie_reviews.Server.Repository
             return review;
         }
 
-        public async Task<ICollection<Review>> GetAllReviewsRepository(string searchTerm)
+        public async Task<ICollection<Review>> GetAllReviewsRepository(string searchTerm, string sortOrder)
         {
-            var query = await _context.Reviews.ToListAsync();
+            var query = _context.Reviews.AsQueryable();
 
-            if (!searchTerm.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(x => x.Title.Contains(searchTerm)).ToList(); ;
+                query = query.Where(x => x.Title.Contains(searchTerm));
             }
 
-            if (query == null)
+            query = sortOrder switch
             {
-                return null;
-            }
+                "rating_desc" => query.OrderByDescending(x => x.Rating),
+                "rating_asc" => query.OrderBy(x => x.Rating),
+                _ => query.OrderByDescending(x => x.Id)
+            };
 
-            return query;
+            return await query.ToListAsync();
         }
 
         public async Task<int> GetNumberOfReviewsRepository()
