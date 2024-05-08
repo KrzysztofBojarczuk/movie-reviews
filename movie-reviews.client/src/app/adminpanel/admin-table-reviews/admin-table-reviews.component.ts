@@ -8,6 +8,7 @@ import {
   MessageService,
   ConfirmEventType,
 } from 'primeng/api';
+import { SelectItem } from '../../models/selectItem';
 
 @Component({
   selector: 'app-admin-table-reviews',
@@ -21,6 +22,12 @@ export class AdminTableReviewsComponent {
   review: Review[] = [];
   value = '';
   numberOfReviews: number = 0;
+  selectedSortOption: string = 'default';
+  sortOptions: SelectItem[] = [
+    { label: 'Highest Rating', value: 'rating_desc' },
+    { label: 'Lowest Rating', value: 'rating_asc' },
+    { label: 'Default', value: 'default' },
+  ];
 
   constructor(
     private dialogService: DialogService,
@@ -92,5 +99,12 @@ export class AdminTableReviewsComponent {
         });
       },
     });
+  }
+  sortReviews() {
+    this.reviewService
+      .getAlReviewsService(this.value, (this.selectedSortOption as any).value)
+      .subscribe((result) => {
+        this.review = result;
+      });
   }
 }

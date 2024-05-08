@@ -11,8 +11,12 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
-  getAlReviewsService(searchTerm: string = ''): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.apiUrl}?searchTerm=${searchTerm}`);
+  getAlReviewsService(
+    searchTerm: string = '',
+    sortOrder: string = ''
+  ): Observable<Review[]> {
+    const params = { searchTerm: searchTerm, sortOrder: sortOrder };
+    return this.http.get<Review[]>(`${this.apiUrl}`, { params: params });
   }
 
   createReviewService(review: Review): Observable<Review> {

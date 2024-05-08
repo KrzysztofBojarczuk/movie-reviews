@@ -16,6 +16,13 @@
     label="Add review"
   ></p-button>
 
+  <p-dropdown
+    [options]="sortOptions"
+    [(ngModel)]="selectedSortOption"
+    optionLabel="label"
+    placeholder="Select Sorting Option"
+    (onChange)="sortReviews()"
+  ></p-dropdown>
   <div
     [ngClass]="{
       'bg-primary': numberOfReviews <= 5,
