@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -23,5 +23,12 @@ export class UsersService {
 
   numberOfUsersService(): Observable<number> {
     return this.http.get<number>(this.apiUrl + `UserNumber`);
+  }
+
+  sendEmailsService(selectedUsers: User[]): Observable<string[]> {
+    const userIds = selectedUsers.map((user) => user.id);
+    const params = userIds.map((userId) => `userId=${userId}`).join('&');
+
+    return this.http.get<string[]>(`${this.apiUrl}UserEmails?${params}`);
   }
 }
