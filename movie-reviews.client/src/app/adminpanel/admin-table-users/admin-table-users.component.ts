@@ -17,6 +17,7 @@ export class AdminTableUsersComponent {
   users: User[] = [];
   value = '';
   userNumber: number = 0;
+  selectedUsers: User[] = [];
 
   public columns = [
     { field: 'id', header: 'Id' },
@@ -80,6 +81,31 @@ export class AdminTableUsersComponent {
           life: 3000,
         });
       },
+    });
+  }
+
+  toggleUserSelection(user: User) {
+    const index = this.selectedUsers.findIndex(
+      (selectedUser) => selectedUser.id === user.id
+    );
+    if (index !== -1) {
+      this.selectedUsers.splice(index, 1);
+    } else {
+      this.selectedUsers.push(user);
+    }
+  }
+
+  sendEmailsToUsers(selectedUsers: User[]) {
+    this.userService.sendEmailsService(selectedUsers).subscribe((result) => {
+      result.forEach((email, index) => {
+        setTimeout(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Message was sent to: ${email}`,
+          });
+        }, index * 500);
+      });
     });
   }
 }

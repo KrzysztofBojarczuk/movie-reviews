@@ -63,9 +63,9 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("UserEmails")]
-        public async Task<IActionResult> GetUserEmails()
+        public async Task<IActionResult> GetUserEmails([FromQuery] List<string> userId)
         {
-            var userEmails = await _usersRepository.GetAllUserEmailsRepository();
+            var userEmails = await _usersRepository.GetUserEmailsRepository(userId);
 
             if(userEmails == null)
             {

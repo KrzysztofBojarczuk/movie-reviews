@@ -14,14 +14,25 @@
     severity="secondary"
     (click)="getAllUsers(value)"
   ></p-button>
+  <p-button
+    label="Send Emails To Users"
+    severity="help"
+    (click)="sendEmailsToUsers(selectedUsers)"
+    [disabled]="selectedUsers.length === 0"
+  ></p-button>
 </div>
 
-<p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table
+  [value]="users"
+  [(selection)]="selectedUsers"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
   <ng-template pTemplate="header">
     <tr>
       <th>Id</th>
       <th>Name</th>
       <th>Email</th>
+      <th>Select</th>
       <th>Action</th>
     </tr>
   </ng-template>
@@ -30,6 +41,12 @@
       <td>{{ users.id }}</td>
       <td>{{ users.userName }}</td>
       <td>{{ users.email }}</td>
+      <td>
+        <p-tableCheckbox
+          [value]="users"
+          (onChange)="toggleUserSelection(users)"
+        ></p-tableCheckbox>
+      </td>
       <td>
         <i
           (click)="deleteUser(users.id)"

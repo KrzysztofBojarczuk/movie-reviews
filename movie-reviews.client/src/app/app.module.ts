@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -27,6 +27,8 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,10 @@ import { DropdownModule } from 'primeng/dropdown';
     AdminTableReviewsComponent,
     AdminFormReviewsComponent,
     RegisterComponent,
+    NavbarComponent,
   ],
   imports: [
+    MenubarModule,
     CardModule,
     ReactiveFormsModule,
     FormsModule,
