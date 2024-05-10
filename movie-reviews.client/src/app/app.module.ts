@@ -29,7 +29,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenubarModule } from 'primeng/menubar';
-import { AdminTableMoviesComponent } from './admin-pnael/admin-table-movies/admin-table-movies.component';
+import { AdminTableMoviesComponent } from './adminpanel/admin-table-movies/admin-table-movies.component';
 
 @NgModule({
   declarations: [
