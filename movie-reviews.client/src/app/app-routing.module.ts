@@ -5,7 +5,7 @@ import { AdminTableReviewsComponent } from './adminpanel/admin-table-reviews/adm
 import { RegisterComponent } from './authentication/register/register.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AdminTableMoviesComponent } from './admin-pnael/admin-table-movies/admin-table-movies.component';
+import { AdminTableMoviesComponent } from './adminpanel/admin-table-movies/admin-table-movies.component';
 
 const routes: Routes = [
   { path: 'users', component: AdminTableUsersComponent },
