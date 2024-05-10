@@ -13,6 +13,7 @@ export class NavbarComponent {
     this.items = [
       { label: 'Users', routerLink: 'users' },
       { label: 'Reviews', routerLink: 'reviews' },
+      { label: 'Movies', routerLink: 'movies' },
     ];
   }
 }

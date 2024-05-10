@@ -41,5 +41,31 @@ namespace movie_reviews.Server.Repository
 
             return movies;
         }
+
+        public async Task<Movie> DeleteMovieRepository(int id)
+        {
+            var movie = await _context.Movies.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (movie == null)
+            {
+                return null;
+            }
+
+            _context.Movies.Remove(movie);
+
+            await _context.SaveChangesAsync();
+
+            return movie;
+        }
+
+        public async Task<Movie> UpdateMovieRepository(Movie updateMovie)
+        {
+            _context.Movies.Update(updateMovie);
+
+            await _context.SaveChangesAsync();
+
+            return updateMovie;
+        }
+
     }
 }

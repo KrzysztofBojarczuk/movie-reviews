@@ -36,11 +36,11 @@ namespace movie_reviews.Server.Controllers
         [HttpGet()]
         public async Task<IActionResult> GetAllMovies()
         {
-            var movies = await _movieRepository.GetMovieRepositry();
+            var movie = await _movieRepository.GetMovieRepositry();
 
-            var moviesGet = _mapper.Map<List<MovieGetDto>>(movies);
+            var movieGet = _mapper.Map<List<MovieGetDto>>(movie);
 
-            return Ok(moviesGet);
+            return Ok(movieGet);
         }
 
         [HttpGet("{id}")]
@@ -56,6 +56,34 @@ namespace movie_reviews.Server.Controllers
             var movieGet = _mapper.Map<MovieGetDto>(movie);
 
             return Ok(movieGet);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateMovie(int id, MovieCreateDto movie)
+        {
+
+            var toUpdateMovie = _mapper.Map<Movie>(movie);
+
+            toUpdateMovie.Id = id;
+
+            await _movieRepository.UpdateMovieRepository(toUpdateMovie);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMovie(int id)
+        {
+            var movieToDelete = await _movieRepository.GetMovieByIdRepository(id);
+
+            if (movieToDelete == null)
+            {
+                return NotFound();
+            }
+
+            await _movieRepository.DeleteMovieRepository(id);
+
+            return NoContent();
         }
     }
 }
