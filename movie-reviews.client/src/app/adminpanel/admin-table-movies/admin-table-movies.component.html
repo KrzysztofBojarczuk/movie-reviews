@@ -1,1 +1,36 @@
-<p>admin-table-movies works!</p>
+<div class="flex flex-row flex-wrap gap-3 ml-5 m-3">
+  <span class="p-input-icon-right">
+    <i class="pi pi-times-circle" (click)="clearFilter()"></i>
+    <input
+      type="text"
+      id="searchInput"
+      pInputText
+      [(ngModel)]="value"
+      placeholder="Write a title"
+    />
+  </span>
+  <p-button
+    label="Search"
+    severity="secondary"
+    (click)="getMovies(value)"
+  ></p-button>
+</div>
+
+<div class="grid">
+  <div class="col-6">
+    <div *ngFor="let item of movies" class="m-5">
+      <p-card>
+        <p class="m-2">
+          <b>
+            {{ item.title }}
+          </b>
+        </p>
+        <p>{{ item.releasetime | date : "yyyy-MM-dd" }}</p>
+        <p class="m-2" style="overflow-wrap: break-word; text-align: justify">
+          {{ item.title }}
+        </p>
+      </p-card>
+    </div>
+  </div>
+  <div class="col-6 col-offset-1"></div>
+</div>

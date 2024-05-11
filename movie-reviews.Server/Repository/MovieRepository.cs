@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using movie_reviews.Server.Data;
 using movie_reviews.Server.Interfaces;
 using movie_reviews.Server.models;
@@ -35,11 +36,16 @@ namespace movie_reviews.Server.Repository
             return movie;
         }
 
-        public async Task<ICollection<Movie>> GetMovieRepositry()
+        public async Task<ICollection<Movie>> GetMovieRepositry(string searchTerm = null)
         {
-            var movies = await _context.Movies.ToListAsync();
+            var query = await _context.Movies.ToListAsync();
 
-            return movies;
+            if (!searchTerm.IsNullOrEmpty())
+            {
+                query = query.Where(x => x.Title.Contains(searchTerm)).ToList();
+            }
+
+            return query;
         }
 
         public async Task<Movie> DeleteMovieRepository(int id)

@@ -34,9 +34,9 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet()]
-        public async Task<IActionResult> GetAllMovies()
+        public async Task<IActionResult> GetAllMovies(string searchTerm = null)
         {
-            var movie = await _movieRepository.GetMovieRepositry();
+            var movie = await _movieRepository.GetMovieRepositry(searchTerm);
 
             var movieGet = _mapper.Map<List<MovieGetDto>>(movie);
 
