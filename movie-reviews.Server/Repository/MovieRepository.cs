@@ -8,11 +8,13 @@ namespace movie_reviews.Server.Repository
 {
     public class MovieRepository : IMovieRepository
     {
+        private readonly IReviewRepository _reviewRepository;
         private readonly ApplicationDbContext _context;
 
-        public MovieRepository(ApplicationDbContext context)
+        public MovieRepository(ApplicationDbContext context, IReviewRepository reviewRepository)
         {
             _context = context;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<Movie> CreateMovieRepository(Movie movie)
@@ -49,7 +51,11 @@ namespace movie_reviews.Server.Repository
         }
 
         public async Task<Movie> DeleteMovieRepository(int id)
-        {
+        { 
+            var reviewsToDelete = await _context.Reviews.Where(x => x.MovieId == id).ToListAsync();
+
+            _context.Reviews.RemoveRange(reviewsToDelete);
+
             var movie = await _context.Movies.FirstOrDefaultAsync(x => x.Id == id);
 
             if (movie == null)
@@ -72,6 +78,5 @@ namespace movie_reviews.Server.Repository
 
             return updateMovie;
         }
-
     }
 }

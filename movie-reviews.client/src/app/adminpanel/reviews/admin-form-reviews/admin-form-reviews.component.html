@@ -8,7 +8,8 @@
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     />
   </div>
-  <div class="Text">
+
+  <div class="field">
     <label for="text">Text</label>
 
     <textarea
@@ -20,7 +21,8 @@
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     ></textarea>
   </div>
-  <div class="Rating">
+
+  <div class="field">
     <label for="rating">Rating</label>
     <p-inputNumber
       inputId="integeronly"
@@ -31,8 +33,20 @@
     >
     </p-inputNumber>
   </div>
+  <div class="field">
+    <label for="movieSelect">Select Movie</label>
+    <select
+      formControlName="movieId"
+      (change)="onReviewIdChange($event)"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    >
+      <option *ngFor="let movie of movies" [value]="movie.id">
+        {{ movie.title }}
+      </option>
+    </select>
+  </div>
 
-  <div class="User">
+  <div class="field">
     <label for="userSelect">Select User</label>
     <select
       formControlName="appUserId"
@@ -45,7 +59,7 @@
     </select>
   </div>
 
-  <div class="User">
+  <div class="field">
     <label for="name">Name</label>
     <input
       type="text"
@@ -55,7 +69,7 @@
     />
   </div>
 
-  <div class="User">
+  <div class="field">
     <label for="email">Email</label>
     <input
       type="email"

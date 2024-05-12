@@ -74,14 +74,12 @@ namespace movie_reviews.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(int id)
         {
-            var movieToDelete = await _movieRepository.GetMovieByIdRepository(id);
+            var movieToDelete = await _movieRepository.DeleteMovieRepository(id);
 
             if (movieToDelete == null)
             {
                 return NotFound();
             }
-
-            await _movieRepository.DeleteMovieRepository(id);
 
             return NoContent();
         }

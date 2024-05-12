@@ -4,4 +4,5 @@ export interface Review {
   text: string;
   rating: number;
   appUserId: string;
+  movieId: number;
 }

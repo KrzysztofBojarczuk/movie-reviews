@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
-import { AdminTableUsersComponent } from './adminpanel/admin-table-users/admin-table-users.component';
+import { AdminTableUsersComponent } from './adminpanel/users/admin-table-users/admin-table-users.component';
 import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,9 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableComponent } from './table/table.component';
-import { AdminTableReviewsComponent } from './adminpanel/admin-table-reviews/admin-table-reviews.component';
+import { AdminTableReviewsComponent } from './adminpanel/reviews/admin-table-reviews/admin-table-reviews.component';
 import { TabViewModule } from 'primeng/tabview';
-import { AdminFormReviewsComponent } from './adminpanel/admin-form-reviews/admin-form-reviews.component';
+import { AdminFormReviewsComponent } from './adminpanel/reviews/admin-form-reviews/admin-form-reviews.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -29,8 +29,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenubarModule } from 'primeng/menubar';
-import { AdminTableMoviesComponent } from './adminpanel/admin-table-movies/admin-table-movies.component';
-
+import { AdminTableMoviesComponent } from './adminpanel/movies/admin-table-movies/admin-table-movies.component';
+import { AdminFormMoviesComponent } from './adminpanel/movies/admin-form-movies/admin-form-movies.component';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +43,10 @@ import { AdminTableMoviesComponent } from './adminpanel/admin-table-movies/admin
     RegisterComponent,
     NavbarComponent,
     AdminTableMoviesComponent,
+    AdminFormMoviesComponent,
   ],
   imports: [
+    CalendarModule,
     MenubarModule,
     CardModule,
     ReactiveFormsModule,
