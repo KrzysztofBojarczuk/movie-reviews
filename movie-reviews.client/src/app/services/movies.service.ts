@@ -15,4 +15,12 @@ export class MoviesService {
     const params = { searchTerm: searchTerm };
     return this.http.get<Movie[]>(this.apiUrl, { params: params });
   }
+
+  createMovieService(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(this.apiUrl, movie);
+  }
+
+  deleteMovieService(id: number): Observable<number> {
+    return this.http.delete<number>(`${this.apiUrl}${id}`);
+  }
 }

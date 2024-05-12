@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Review } from '../../models/review';
-import { ReviewService } from '../../services/review.service';
+import { Review } from '../../../models/review';
+import { ReviewService } from '../../../services/review.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UsersService } from '../../services/users.service';
-import { User } from '../../models/user';
+import { UsersService } from '../../../services/users.service';
+import { User } from '../../../models/user';
+import { MoviesService } from '../../../services/movies.service';
+import { Movie } from '../../../models/movie';
 
 @Component({
   selector: 'app-admin-form-reviews',
@@ -14,13 +16,17 @@ import { User } from '../../models/user';
 export class AdminFormReviewsComponent {
   reviewForm: FormGroup;
   users: User[] = [];
+  movies: Movie[] = [];
+  // selectedMovieId: number;
+  selectedMovieId: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
     private reviewService: ReviewService,
     private dialogService: DialogService,
     private ref: DynamicDialogRef,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private movieServices: MoviesService
   ) {
     this.reviewForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -29,11 +35,13 @@ export class AdminFormReviewsComponent {
       appUserId: ['', Validators.required],
       userName: [{ value: '', disabled: true }, Validators.required],
       email: [{ value: '', disabled: true }, Validators.required],
+      movieId: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.getAllMovies();
   }
 
   submit(review: Review) {
@@ -54,9 +62,29 @@ export class AdminFormReviewsComponent {
     }
   }
 
+  onMovieIdChange(event: Event) {
+    const selectedMovieId = (event.target as HTMLSelectElement).value;
+    const selectedMovie = this.movies.find(
+      (movie) => movie.id === parseInt(selectedMovieId)
+    );
+
+    if (selectedMovie) {
+      this.selectedMovieId = selectedMovie.id;
+      this.reviewForm.patchValue({
+        movieId: selectedMovie.id,
+      });
+    }
+  }
+
   getAllUsers() {
     this.usersService.getAllUserServices().subscribe((result) => {
       this.users = result;
+    });
+  }
+
+  getAllMovies() {
+    this.movieServices.getMovieServices().subscribe((result) => {
+      this.movies = result;
     });
   }
 }

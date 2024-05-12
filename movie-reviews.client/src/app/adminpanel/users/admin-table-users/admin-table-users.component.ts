@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { User } from '../../models/user';
+import { User } from '../../../models/user';
 import {
   ConfirmationService,
   MessageService,
   ConfirmEventType,
 } from 'primeng/api';
-import { UsersService } from '../../services/users.service';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-admin-table-users',

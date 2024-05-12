@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminFormReviewsComponent } from '../admin-form-reviews/admin-form-reviews.component';
-import { Review } from '../../models/review';
-import { ReviewService } from '../../services/review.service';
+import { Review } from '../../../models/review';
+import { ReviewService } from '../../../services/review.service';
 import {
   ConfirmationService,
   MessageService,
   ConfirmEventType,
 } from 'primeng/api';
-import { SelectItem } from '../../models/selectItem';
+import { SelectItem } from '../../../models/selectItem';
 
 @Component({
   selector: 'app-admin-table-reviews',
@@ -43,7 +43,7 @@ export class AdminTableReviewsComponent {
 
   openFormModal() {
     const ref = this.dialogService.open(AdminFormReviewsComponent, {
-      header: 'AddReview',
+      header: 'Add Review',
       width: '70%',
     });
 
@@ -100,6 +100,7 @@ export class AdminTableReviewsComponent {
       },
     });
   }
+
   sortReviews() {
     this.reviewService
       .getAlReviewsService(this.value, (this.selectedSortOption as any).value)

@@ -6,5 +6,6 @@
         public string Text { get; set; }
         public int Rating { get; set; }
         public string AppUserId { get; set; }
+        public int MovieId { get; set; }
     }
 }
