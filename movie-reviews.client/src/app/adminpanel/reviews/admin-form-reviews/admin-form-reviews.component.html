@@ -37,7 +37,6 @@
     <label for="movieSelect">Select Movie</label>
     <select
       formControlName="movieId"
-      (change)="onReviewIdChange($event)"
       class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
     >
       <option *ngFor="let movie of movies" [value]="movie.id">

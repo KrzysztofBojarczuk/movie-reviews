@@ -62,20 +62,6 @@ export class AdminFormReviewsComponent {
     }
   }
 
-  onMovieIdChange(event: Event) {
-    const selectedMovieId = (event.target as HTMLSelectElement).value;
-    const selectedMovie = this.movies.find(
-      (movie) => movie.id === parseInt(selectedMovieId)
-    );
-
-    if (selectedMovie) {
-      this.selectedMovieId = selectedMovie.id;
-      this.reviewForm.patchValue({
-        movieId: selectedMovie.id,
-      });
-    }
-  }
-
   getAllUsers() {
     this.usersService.getAllUserServices().subscribe((result) => {
       this.users = result;
