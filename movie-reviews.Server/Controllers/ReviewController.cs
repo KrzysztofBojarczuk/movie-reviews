@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using movie_reviews.Server.Dtos;
 using movie_reviews.Server.Interfaces;
 using movie_reviews.Server.models;
@@ -27,7 +28,17 @@ namespace movie_reviews.Server.Controllers
         {
             var review = await _reviewRepository.GetAllReviewsRepository(searchTerm, sortOrder);
 
-            var reviewGet = _mapper.Map<List<Review>>(review);
+            var reviewGet = _mapper.Map<List<ReviewGetDto>>(review);
+
+            return Ok(reviewGet);
+        }
+
+        [HttpGet("GetReviewsByMovieId/{id}")]
+        public async Task<IActionResult> GetReviewsByMovieId(int id)
+        {
+            var review = await _reviewRepository.GetReviewsByMovieIdRepository(id);
+
+            var reviewGet = _mapper.Map<List<ReviewGetDto>>(review);
 
             return Ok(reviewGet);
         }

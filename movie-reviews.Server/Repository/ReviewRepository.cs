@@ -86,6 +86,18 @@ namespace movie_reviews.Server.Repository
             return review;
         }
 
+        public async Task<ICollection<Review>> GetReviewsByMovieIdRepository(int id)
+        {
+            var reviews = await _context.Reviews.Where(x => x.MovieId  == id).ToListAsync();
+
+            if (reviews == null)
+            {
+                return null;
+            }
+
+            return reviews;
+        }
+
         public async Task<Review> UpdateReviewRepository(Review updateReview)
         {
             _context.Reviews.Update(updateReview);

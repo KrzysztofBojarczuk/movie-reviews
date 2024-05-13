@@ -34,4 +34,8 @@ export class ReviewService {
   getNumberOfReviewsService(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}GetNumberOfReviews`);
   }
+
+  getGetReviewsByMovieIdService(id: number): Observable<Review[]> {
+    return this.http.get<Review[]>(`${this.apiUrl}GetReviewsByMovieId/${id}`);
+  }
 }

@@ -32,15 +32,26 @@
           </b>
         </p>
         <p>{{ item.releasetime | date : "yyyy-MM-dd" }}</p>
-        <p-button
-          label="Delete Movie"
-          severity="danger"
-          (onClick)="deleteMovie(item.id)"
-        ></p-button>
+        <div class="flex gap-3 justify-content-center">
+          <p-button
+            label="Delete Movie"
+            severity="danger"
+            (onClick)="deleteMovie(item.id)"
+          ></p-button>
+          <p-button
+            label="Open Reviews"
+            severity="info"
+            (click)="openReviews(item.id)"
+          ></p-button>
+        </div>
       </p-card>
     </div>
   </div>
-  <div class="col-6 col-offset-1"></div>
+  <div class="col-6">
+    <app-admin-movie-reviews
+      [movieId]="selectedMovieId"
+    ></app-admin-movie-reviews>
+  </div>
 </div>
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
