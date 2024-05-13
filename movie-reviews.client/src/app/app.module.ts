@@ -32,6 +32,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { AdminTableMoviesComponent } from './adminpanel/movies/admin-table-movies/admin-table-movies.component';
 import { AdminFormMoviesComponent } from './adminpanel/movies/admin-form-movies/admin-form-movies.component';
 import { CalendarModule } from 'primeng/calendar';
+import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-reviews/admin-movie-reviews.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +46,7 @@ import { CalendarModule } from 'primeng/calendar';
     NavbarComponent,
     AdminTableMoviesComponent,
     AdminFormMoviesComponent,
+    AdminMovieReviewsComponent,
   ],
   imports: [
     CalendarModule,

@@ -14,6 +14,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class AdminTableMoviesComponent {
   movies: Movie[] = [];
   value = '';
+  selectedMovieId: number = 0;
 
   constructor(
     private dialogService: DialogService,
@@ -49,12 +50,11 @@ export class AdminTableMoviesComponent {
     });
   }
 
+  openReviews(id: number) {
+    this.selectedMovieId = id;
+  }
+
   deleteMovie(id: number) {
-    console.log(
-      '%csrcappadminpanelmoviesadmin-table-moviesadmin-table-movies.component.ts:53 id',
-      'color: #007acc;',
-      id
-    );
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this Movie?',
       header: 'Confirmation',
