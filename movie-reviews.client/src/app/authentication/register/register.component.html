@@ -6,35 +6,39 @@
         <input
           type="text"
           formControlName="email"
+          aria-describedby="email-help"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
-        <div
+        <small
+          class="text-red-500 mt-5"
+          id="email-help"
           *ngIf="
             registerForm.get('email')?.invalid &&
             registerForm.get('email')?.touched
           "
         >
-          <div class="text-red-500 text-xs">Please enter a valid email.</div>
-        </div>
+          Please enter a valid email.
+        </small>
       </div>
       <div class="field">
         <label for="password">Password</label>
         <input
           type="password"
           formControlName="password"
+          aria-describedby="passowrd-help"
           class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
         />
-        <div
+        <small
+          class="text-red-500 mt-5"
+          id="passowrd-help"
           *ngIf="
             registerForm.get('password')?.invalid &&
             registerForm.get('password')?.touched
           "
         >
-          <div class="text-red-500 text-xs">
-            Password must be at least 6 characters long, contain at least one
-            uppercase letter, and one special character.
-          </div>
-        </div>
+          Password must be at least 6 characters long, contain at least one
+          uppercase letter, and one special character.
+        </small>
       </div>
 
       <p-button

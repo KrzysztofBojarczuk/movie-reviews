@@ -31,6 +31,7 @@
             {{ item.title }}
           </b>
         </p>
+        <p class="m-2">{{ getCategoryName(item.category) }}</p>
         <p>{{ item.releasetime | date : "yyyy-MM-dd" }}</p>
         <div class="flex gap-3 justify-content-center">
           <p-button
