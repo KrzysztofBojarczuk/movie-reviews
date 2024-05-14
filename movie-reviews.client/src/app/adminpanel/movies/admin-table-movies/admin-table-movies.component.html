@@ -20,6 +20,14 @@
     (onClick)="openFormModal()"
     label="Add Movie"
   ></p-button>
+
+  <p-selectButton
+    [options]="enumCategory"
+    [multiple]="true"
+    optionLabel="name"
+    optionValue="value"
+    (onChange)="onSelectChange($event)"
+  />
 </div>
 
 <div class="grid">

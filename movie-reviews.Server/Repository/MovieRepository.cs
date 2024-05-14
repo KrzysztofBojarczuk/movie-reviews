@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using movie_reviews.Server.Data;
+using movie_reviews.Server.Enum;
 using movie_reviews.Server.Interfaces;
 using movie_reviews.Server.models;
+using System.Diagnostics.Metrics;
 
 namespace movie_reviews.Server.Repository
 {
@@ -34,17 +37,21 @@ namespace movie_reviews.Server.Repository
             {
                 return null;
             }
-
             return movie;
         }
 
-        public async Task<ICollection<Movie>> GetMovieRepositry(string searchTerm = null)
+        public async Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, List<Category> enumCategory)
         {
             var query = await _context.Movies.ToListAsync();
 
             if (!searchTerm.IsNullOrEmpty())
             {
-                query = query.Where(x => x.Title.Contains(searchTerm)).ToList();
+                query = query.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
+
+            if (!enumCategory.IsNullOrEmpty())
+            {
+                query = query.Where(x => enumCategory.Contains(x.Category)).ToList();
             }
 
             return query;

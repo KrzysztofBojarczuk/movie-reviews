@@ -17,6 +17,15 @@ export class AdminTableMoviesComponent {
   value = '';
   selectedMovieId: number = 0;
 
+  enumCategory: any[] = [
+    { name: 'Sci-fi', value: Category.Scfi },
+    { name: 'Horror', value: Category.Horror },
+    { name: 'Action', value: Category.Action },
+    { name: 'Thriler', value: Category.Thriler },
+  ];
+
+  valueSelectButton: number[] = [];
+
   constructor(
     private dialogService: DialogService,
     private movieServices: MoviesService,
@@ -28,10 +37,17 @@ export class AdminTableMoviesComponent {
     this.getMovies();
   }
 
-  getMovies(searchTerm = '') {
-    this.movieServices.getMovieServices(searchTerm).subscribe((result) => {
-      this.movies = result;
-    });
+  onSelectChange(event: any) {
+    this.valueSelectButton = event.value;
+    this.getMovies('', this.valueSelectButton);
+  }
+
+  getMovies(searchTerm = '', selectedValues?: number[]) {
+    this.movieServices
+      .getMovieServices(searchTerm, selectedValues)
+      .subscribe((result) => {
+        this.movies = result;
+      });
   }
 
   clearFilter() {

@@ -11,9 +11,19 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {}
 
-  getMovieServices(searchTerm: string = ''): Observable<Movie[]> {
-    const params = { searchTerm: searchTerm };
-    return this.http.get<Movie[]>(this.apiUrl, { params: params });
+  getMovieServices(
+    searchTerm: string = '',
+    selectedValues?: number[]
+  ): Observable<Movie[]> {
+    let url = `${this.apiUrl}?searchTerm=${searchTerm}`;
+
+    if (selectedValues && selectedValues.length > 0) {
+      url += `&${selectedValues
+        .map((category) => `enumCategory=${category}`)
+        .join('&')}`;
+    }
+
+    return this.http.get<Movie[]>(url);
   }
 
   createMovieService(movie: Movie): Observable<Movie> {

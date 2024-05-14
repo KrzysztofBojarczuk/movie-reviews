@@ -33,6 +33,7 @@ import { AdminTableMoviesComponent } from './adminpanel/movies/admin-table-movie
 import { AdminFormMoviesComponent } from './adminpanel/movies/admin-form-movies/admin-form-movies.component';
 import { CalendarModule } from 'primeng/calendar';
 import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-reviews/admin-movie-reviews.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-rev
     AdminMovieReviewsComponent,
   ],
   imports: [
+    SelectButtonModule,
     CalendarModule,
     MenubarModule,
     CardModule,

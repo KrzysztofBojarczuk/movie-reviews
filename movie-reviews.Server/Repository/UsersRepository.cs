@@ -24,7 +24,7 @@ namespace movie_reviews.Server.Repository
 
             if (!searchTerm.IsNullOrEmpty())
             {
-                query = query.Where(x => x.UserName.Contains(searchTerm) || x.Email.Contains(searchTerm)).ToList();
+                query = query.Where(x => x.UserName.ToLower().Contains(searchTerm.ToLower()) || x.Email.ToLower().Contains(searchTerm.ToLower())).ToList();
             }
 
             if (query == null)

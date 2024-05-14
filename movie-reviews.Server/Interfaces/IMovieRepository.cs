@@ -1,10 +1,11 @@
-﻿using movie_reviews.Server.models;
+﻿using movie_reviews.Server.Enum;
+using movie_reviews.Server.models;
 
 namespace movie_reviews.Server.Interfaces
 {
     public interface IMovieRepository
     {
-        Task<ICollection<Movie>> GetMovieRepositry(string searchTerm);
+        Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, List<Category> enumCategory);
         Task<Movie> CreateMovieRepository(Movie Movie);
         Task<Movie> GetMovieByIdRepository(int id);
         Task<Movie> UpdateMovieRepository(Movie updateMovie);

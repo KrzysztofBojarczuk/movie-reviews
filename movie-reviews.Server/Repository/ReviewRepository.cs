@@ -47,7 +47,7 @@ namespace movie_reviews.Server.Repository
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                query = query.Where(x => x.Title.Contains(searchTerm));
+                query = query.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()));
             }
 
             query = sortOrder switch
