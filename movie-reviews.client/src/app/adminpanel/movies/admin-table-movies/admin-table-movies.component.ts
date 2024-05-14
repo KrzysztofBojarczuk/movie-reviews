@@ -4,6 +4,7 @@ import { Movie } from '../../../models/movie';
 import { AdminFormMoviesComponent } from '../admin-form-movies/admin-form-movies.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Category } from '../../../enums/category';
 
 @Component({
   selector: 'app-admin-table-movies',
@@ -41,7 +42,7 @@ export class AdminTableMoviesComponent {
   openFormModal() {
     const ref = this.dialogService.open(AdminFormMoviesComponent, {
       header: 'Add Movie',
-      width: '30%',
+      width: '50%',
       height: '50%',
     });
 
@@ -52,6 +53,10 @@ export class AdminTableMoviesComponent {
 
   openReviews(id: number) {
     this.selectedMovieId = id;
+  }
+
+  getCategoryName(category: number): string {
+    return Category[category];
   }
 
   deleteMovie(id: number) {

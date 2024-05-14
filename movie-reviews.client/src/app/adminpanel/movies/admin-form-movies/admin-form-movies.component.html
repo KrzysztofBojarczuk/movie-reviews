@@ -9,8 +9,19 @@
     />
   </div>
   <div class="field">
-    <p-calendar id="releasetime" formControlName="releasetime" />
+    <label for="category">Category</label>
+    <p-dropdown
+      formControlName="category"
+      [options]="categories"
+      optionLabel="name"
+      optionValue="value"
+      placeholder="Select a Category"
+      class="p-2"
+    ></p-dropdown>
+  </div>
+  <div class="field">
     <label for="releasetime" class="p-2">Release Time</label>
+    <p-calendar id="releasetime" formControlName="releasetime" />
   </div>
   <p-button
     [style]="{ 'margin-top.px': 20 }"
