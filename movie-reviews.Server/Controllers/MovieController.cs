@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using movie_reviews.Server.Dtos;
+using movie_reviews.Server.Enum;
 using movie_reviews.Server.Interfaces;
 using movie_reviews.Server.models;
 using movie_reviews.Server.Repository;
@@ -34,9 +35,9 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet()]
-        public async Task<IActionResult> GetAllMovies(string searchTerm = null)
+        public async Task<IActionResult> GetAllMovies(string searchTerm = null, [FromQuery] List<Category> enumCategory = null)
         {
-            var movie = await _movieRepository.GetMovieRepositry(searchTerm);
+            var movie = await _movieRepository.GetMovieRepositry(searchTerm, enumCategory);
 
             var movieGet = _mapper.Map<List<MovieGetDto>>(movie);
 
