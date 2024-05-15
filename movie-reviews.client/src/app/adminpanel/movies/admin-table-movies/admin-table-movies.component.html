@@ -48,6 +48,7 @@
             (onClick)="deleteMovie(item.id)"
           ></p-button>
           <p-button
+            *ngIf="numberOfReviewsMap[item.id] > 0"
             label="Open Reviews"
             severity="info"
             (click)="openReviews(item.id)"

@@ -1,4 +1,5 @@
 ﻿using movie_reviews.Server.models;
+using movie_reviews.Server.Repository;
 using System.Diagnostics.Metrics;
 
 namespace movie_reviews.Server.Interfaces
@@ -13,5 +14,6 @@ namespace movie_reviews.Server.Interfaces
         Task<Review> GetReviewByIdRepository(int id);
         Task<int> GetNumberReviewsByUserIdRepository(string id);
         Task<int> GetNumberOfReviewsRepository();
+        Task<int> GetNumberOfReviewsForMovieByIdRepository(int id);
     }
 }
