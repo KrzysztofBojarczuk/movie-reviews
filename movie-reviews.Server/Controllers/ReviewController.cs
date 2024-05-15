@@ -99,6 +99,19 @@ namespace movie_reviews.Server.Controllers
             return NoContent();
         }
 
+        [HttpGet("CountReviewsForMovieById/{id}")]
+        public async Task<IActionResult> GetNumberReviewsForMovieById(int id)
+        {
+            var reviewsCount = await _reviewRepository.GetNumberOfReviewsForMovieByIdRepository(id);
+
+            if (reviewsCount == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(reviewsCount);
+        }
+
         [HttpGet("CountReviewsByUserId/{userId}")]
         public async Task<IActionResult> GetNumberReviewsByUserId(string userId)
         {

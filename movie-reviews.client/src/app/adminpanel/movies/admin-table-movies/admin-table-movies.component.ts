@@ -5,6 +5,8 @@ import { AdminFormMoviesComponent } from '../admin-form-movies/admin-form-movies
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Category } from '../../../enums/category';
+import { ReviewService } from '../../../services/review.service';
+import { forkJoin, tap } from 'rxjs';
 
 @Component({
   selector: 'app-admin-table-movies',
@@ -16,6 +18,8 @@ export class AdminTableMoviesComponent {
   movies: Movie[] = [];
   value = '';
   selectedMovieId: number = 0;
+  numberOfMoviesReviews: number = 0;
+  numberOfReviewsMap: { [key: number]: number } = {};
 
   enumCategory: any[] = [
     { name: 'Sci-fi', value: Category.Scfi },
@@ -30,7 +34,8 @@ export class AdminTableMoviesComponent {
     private dialogService: DialogService,
     private movieServices: MoviesService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit() {
@@ -47,6 +52,18 @@ export class AdminTableMoviesComponent {
       .getMovieServices(searchTerm, selectedValues)
       .subscribe((result) => {
         this.movies = result;
+
+        const reviewsObservables = this.movies.map((movie) =>
+          this.getNumberReviews(movie.id).pipe(
+            tap((reviews) => {
+              this.numberOfReviewsMap[movie.id] = reviews;
+            })
+          )
+        );
+        //pipe służy do przetwarzania wartości zwracanych przez getNumberReviewsForMoviesByIdService.
+        //tap wykonujemy operacje poboczne, w tym przypadku zapisujemy liczbę recenzji dla danego numberOfReviewsMap.
+        //forkJoin oczekuje na zakończenie wszystkich zapytań
+        forkJoin(reviewsObservables).subscribe();
       });
   }
 
@@ -65,6 +82,9 @@ export class AdminTableMoviesComponent {
     ref.onClose.subscribe(() => {
       this.getMovies();
     });
+  }
+  getNumberReviews(id: number) {
+    return this.reviewService.getNumberOfReviewsForMoviesByIdService(id);
   }
 
   openReviews(id: number) {

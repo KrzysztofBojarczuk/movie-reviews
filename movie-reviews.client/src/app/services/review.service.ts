@@ -31,6 +31,12 @@ export class ReviewService {
     return this.http.get<number>(`${this.apiUrl}CountReviewsByUserId/${id}`);
   }
 
+  getNumberOfReviewsForMoviesByIdService(id: number): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}CountReviewsForMovieById/${id}`
+    );
+  }
+
   getNumberOfReviewsService(): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}GetNumberOfReviews`);
   }
