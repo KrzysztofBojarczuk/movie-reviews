@@ -70,6 +70,17 @@ namespace movie_reviews.Server.Repository
                 return null;
             }
 
+            var userIds = reviewsToDelete.Select(r => r.AppUserId).ToList();
+
+            var users = await _context.Users.Where(u => userIds.Contains(u.Id)).ToListAsync();
+
+            foreach (var user in users)
+            {
+                var reviewsToDeleteByUser = reviewsToDelete.Where(r => r.AppUserId == user.Id).ToList();
+
+                user.NumberOfReviews -= reviewsToDeleteByUser.Count;
+            }
+
             _context.Movies.Remove(movie);
 
             await _context.SaveChangesAsync();

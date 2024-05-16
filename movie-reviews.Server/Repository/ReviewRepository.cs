@@ -19,7 +19,11 @@ namespace movie_reviews.Server.Repository
         public async Task<Review> CreateReviewRepository(Review review)
         {
             await _context.Reviews.AddAsync(review);
-            
+
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == review.AppUserId);
+
+            user.NumberOfReviews++;
+
             await _context.SaveChangesAsync();
             
             return review;
@@ -33,6 +37,10 @@ namespace movie_reviews.Server.Repository
             {
                 return null;
             }
+
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == review.AppUserId);
+
+            user.NumberOfReviews--;
 
             _context.Reviews.Remove(review);
 

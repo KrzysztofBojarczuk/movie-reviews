@@ -3,4 +3,5 @@ export interface User {
   userName: string;
   email: string;
   userId: number;
+  numberOfReviews: number;
 }
