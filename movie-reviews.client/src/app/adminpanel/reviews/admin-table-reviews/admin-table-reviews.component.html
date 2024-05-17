@@ -46,12 +46,26 @@
       <p class="m-2" style="overflow-wrap: break-word; text-align: justify">
         {{ item.text }}
       </p>
-      <p class="m-2">{{ item.rating }}</p>
-      <p-button
-        label="Delete review"
-        severity="danger"
-        (onClick)="deleteReview(item.id)"
-      ></p-button>
+      <p class="m-2">Rating {{ item.rating }}</p>
+
+      <!-- <p class="m-2">Cost Of Review {{ item.costOfReview }}</p> -->
+      <div class="flex gap-3 justify-content-center">
+        <p>Cost Of Review:</p>
+        <p-inputNumber
+          [(ngModel)]="item.costOfReview"
+          mode="currency"
+          currency="PLN"
+          locale="pl-PL"
+          [disabled]="true"
+        />
+      </div>
+      <div class="mt-2">
+        <p-button
+          label="Delete review"
+          severity="danger"
+          (onClick)="deleteReview(item.id)"
+        ></p-button>
+      </div>
     </p-card>
   </div>
 </div>

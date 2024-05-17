@@ -1,14 +1,9 @@
 <form [formGroup]="movieForm" (ngSubmit)="submit(movieForm.value)">
-  <div class="field">
+  <div class="flex flex-column gap-2">
     <label for="title">Title</label>
-    <input
-      id="title"
-      formControlName="title"
-      pInputText
-      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-    />
+    <input id="title" formControlName="title" pInputText />
   </div>
-  <div class="field">
+  <div class="flex flex-column gap-2 mt-2">
     <label for="category">Category</label>
     <p-dropdown
       formControlName="category"
@@ -19,7 +14,7 @@
       class="p-2"
     ></p-dropdown>
   </div>
-  <div class="field">
+  <div class="flex flex-column gap-2 mt-2">
     <label for="releasetime" class="p-2">Release Time</label>
     <p-calendar id="releasetime" formControlName="releasetime" />
   </div>

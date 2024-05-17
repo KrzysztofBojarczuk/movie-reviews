@@ -1,16 +1,16 @@
 <div class="flex justify-content-center align-items-center min-h-screen">
   <p-card [style]="{ width: '360px' }">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-      <div class="field">
+      <div class="flex flex-column gap-2 mt-2">
         <label for="email">Email</label>
         <input
           type="text"
           formControlName="email"
           aria-describedby="email-help"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          pInputText
         />
         <small
-          class="text-red-500 mt-5"
+          class="text-red-500 mt-2"
           id="email-help"
           *ngIf="
             loginForm.get('email')?.invalid && loginForm.get('email')?.touched
@@ -19,16 +19,16 @@
           Incorrect email address.
         </small>
       </div>
-      <div class="field">
+      <div class="flex flex-column gap-2 mt-2">
         <label for="password">Password</label>
         <input
           type="text"
           formControlName="password"
           aria-describedby="passowrd-help"
-          class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+          pInputText
         />
         <small
-          class="text-red-500 mt-5"
+          class="text-red-500 mt-2"
           id="passowrd-help"
           *ngIf="
             loginForm.get('password')?.invalid &&
@@ -40,11 +40,14 @@
         </small>
       </div>
 
-      <p-button
-        type="submit"
-        label="Sign In"
-        [disabled]="loginForm.invalid"
-      ></p-button>
+      <div class="flex justify-content-center">
+        <p-button
+          class="mt-5"
+          type="submit"
+          label="Sign In"
+          [disabled]="loginForm.invalid"
+        ></p-button>
+      </div>
     </form>
   </p-card>
 </div>

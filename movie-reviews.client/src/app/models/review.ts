@@ -5,4 +5,7 @@ export interface Review {
   rating: number;
   appUserId: string;
   movieId: number;
+  numberOfHours: number;
+  rate: number;
+  costOfReview: number;
 }
