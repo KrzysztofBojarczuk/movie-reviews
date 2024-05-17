@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Review } from '../../../models/review';
 import { ReviewService } from '../../../services/review.service';
@@ -7,6 +7,7 @@ import { UsersService } from '../../../services/users.service';
 import { User } from '../../../models/user';
 import { MoviesService } from '../../../services/movies.service';
 import { Movie } from '../../../models/movie';
+import { combineLatest, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-admin-form-reviews',
@@ -36,12 +37,25 @@ export class AdminFormReviewsComponent {
       userName: [{ value: '', disabled: true }, Validators.required],
       email: [{ value: '', disabled: true }, Validators.required],
       movieId: ['', Validators.required],
+      numberOfHours: [0, Validators.required],
+      rate: [0, Validators.required],
+      costOfReview: [0, { disabled: true }],
     });
   }
 
   ngOnInit(): void {
     this.getAllUsers();
     this.getAllMovies();
+
+    //combineLatest łączy obserwowalne strumienie
+    //pipe to metoda używana w strumieniach RxJS do łączenia wielu operatoró
+    //map to operator, który przetwarza wartości emitowane przez strumień i zwraca przetworzone wartości. Jest to sposób na przekształcenie jednej wartości w inną.
+    combineLatest([
+      this.reviewForm.get('numberOfHours')?.valueChanges || of(0), // Provide a default value if undefined
+      this.reviewForm.get('rate')?.valueChanges || of(0), // Provide a default value if undefined
+    ])
+      .pipe(map(([numberOfHours, rate]) => numberOfHours * rate))
+      .subscribe((tot) => this.reviewForm.get('costOfReview')?.setValue(tot));
   }
 
   submit(review: Review) {

@@ -18,6 +18,8 @@ namespace movie_reviews.Server.models
         [ForeignKey("Movie")]
         public int? MovieId { get; set; }
         public Movie? Movie { get; set; }
-
+        public int NumberOfHours { get; set; }
+        public decimal Rate { get; set; }
+        public decimal CostOfReview { get; set; }
     }
 }
