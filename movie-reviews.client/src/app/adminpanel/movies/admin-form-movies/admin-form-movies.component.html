@@ -1,7 +1,19 @@
 <form [formGroup]="movieForm" (ngSubmit)="submit(movieForm.value)">
   <div class="flex flex-column gap-2">
     <label for="title">Title</label>
-    <input id="title" formControlName="title" pInputText />
+    <input
+      id="title"
+      formControlName="title"
+      aria-describedby="title-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="title-help"
+      *ngIf="movieForm.get('title')?.invalid && movieForm.get('title')?.touched"
+    >
+      Title required.
+    </small>
   </div>
   <div class="flex flex-column gap-2 mt-2">
     <label for="category">Category</label>
@@ -11,12 +23,35 @@
       optionLabel="name"
       optionValue="value"
       placeholder="Select a Category"
-      class="p-2"
+      aria-describedby="category-help"
     ></p-dropdown>
+    <small
+      class="text-red-500 mt-2"
+      id="Category-help"
+      *ngIf="
+        movieForm.get('Category')?.invalid && movieForm.get('Category')?.touched
+      "
+    >
+      Title required.
+    </small>
   </div>
   <div class="flex flex-column gap-2 mt-2">
-    <label for="releasetime" class="p-2">Release Time</label>
-    <p-calendar id="releasetime" formControlName="releasetime" />
+    <label for="releasetime">Release Time</label>
+    <p-calendar
+      id="releasetime"
+      formControlName="releasetime"
+      aria-describedby="releasetime-help"
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="releasetime-help"
+      *ngIf="
+        movieForm.get('releasetime')?.invalid &&
+        movieForm.get('releasetime')?.touched
+      "
+    >
+      Release Time required.
+    </small>
   </div>
   <p-button
     [style]="{ 'margin-top.px': 20 }"
