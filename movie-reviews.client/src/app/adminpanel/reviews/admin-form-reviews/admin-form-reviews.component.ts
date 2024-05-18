@@ -32,7 +32,14 @@ export class AdminFormReviewsComponent {
     this.reviewForm = this.formBuilder.group({
       title: ['', Validators.required],
       text: ['', Validators.required],
-      rating: ['', Validators.required],
+      rating: [
+        '',
+        [
+          Validators.minLength(0),
+          Validators.maxLength(10),
+          Validators.required,
+        ],
+      ],
       appUserId: ['', Validators.required],
       userName: [{ value: '', disabled: true }, Validators.required],
       email: [{ value: '', disabled: true }, Validators.required],
