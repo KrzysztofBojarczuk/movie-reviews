@@ -43,6 +43,19 @@ namespace movie_reviews.Server.Controllers
             return Ok(reviewGet);
         }
 
+        [HttpGet("GetCosteOfReviewsForMovieById/{id}")]
+        public async Task<IActionResult> GetCosteOfReviewsForMovieById(int id)
+        {
+            var reviewCost= await _reviewRepository.GetCosteOfReviewsForMovieByIdRepository(id);
+
+            if (reviewCost == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(reviewCost);
+        }
+
         [HttpGet("GetNumberOfReviews")]
         public async Task<IActionResult> GetNumberOfReviews()
         {
@@ -55,6 +68,7 @@ namespace movie_reviews.Server.Controllers
 
             return Ok(reviews);
         }
+
 
         [HttpPost()]
         public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review)

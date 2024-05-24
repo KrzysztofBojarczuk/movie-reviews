@@ -11,12 +11,16 @@ export class AdminMovieReviewsComponent {
   @Input() movieId: number = 0;
   movieReviews: Review[] = [];
 
+  costOfReviews: number = 0;
+  costOfReviewsTS: number = 0;
+
   constructor(private reviewService: ReviewService) {}
 
   ngOnInit() {}
 
   ngOnChanges() {
     this.getReviewsMovie(this.movieId);
+    this.getCostOfReviews(this.movieId);
   }
 
   getReviewsMovie(movieId: number) {
@@ -24,6 +28,19 @@ export class AdminMovieReviewsComponent {
       .getGetReviewsByMovieIdService(movieId)
       .subscribe((result) => {
         this.movieReviews = result;
+
+        this.costOfReviewsTS = this.movieReviews.reduce(
+          (acc, review) => acc + review.costOfReview,
+          0
+        );
+      });
+  }
+
+  getCostOfReviews(movieId: number) {
+    this.reviewService
+      .getCosteOfReviewsForMovieByIdService(movieId)
+      .subscribe((result) => {
+        this.costOfReviews = result;
       });
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -32,4 +34,6 @@ export class LoginComponent {
   onSubmit(login: any) {
     this.authenticationService.loginUserService(login).subscribe();
   }
+
+  moveToSignUp() {}
 }
