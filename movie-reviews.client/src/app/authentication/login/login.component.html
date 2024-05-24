@@ -40,12 +40,19 @@
         </small>
       </div>
 
-      <div class="flex justify-content-center">
+      <div class="flex justify-content-center gap-3">
         <p-button
           class="mt-5"
           type="submit"
-          label="Sign In"
+          label="Login"
           [disabled]="loginForm.invalid"
+        ></p-button>
+        <p-button
+          class="mt-5"
+          type="submit"
+          label="Sign Up"
+          routerLink=""
+          (click)="moveToSignUp()"
         ></p-button>
       </div>
     </form>

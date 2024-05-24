@@ -15,5 +15,6 @@ namespace movie_reviews.Server.Interfaces
         Task<int> GetNumberReviewsByUserIdRepository(string id);
         Task<int> GetNumberOfReviewsRepository();
         Task<int> GetNumberOfReviewsForMovieByIdRepository(int id);
+        Task<decimal> GetCosteOfReviewsForMovieByIdRepository(int id);
     }
 }

@@ -68,6 +68,15 @@ namespace movie_reviews.Server.Repository
             return await query.ToListAsync();
         }
 
+        public async Task<decimal> GetCosteOfReviewsForMovieByIdRepository(int id)
+        {
+            var reviews = await _context.Reviews.Where(x => x.MovieId == id).ToListAsync();
+
+            var costOfreviews = reviews.Select(x => x.CostOfReview).Sum();
+
+            return costOfreviews;
+        }
+
         public async Task<int> GetNumberOfReviewsForMovieByIdRepository(int id)
         {
            var countNumberForReviews = await _context.Reviews.Where(x => x.MovieId == id).CountAsync();
