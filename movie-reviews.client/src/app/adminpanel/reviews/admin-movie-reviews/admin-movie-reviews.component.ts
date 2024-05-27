@@ -13,6 +13,7 @@ export class AdminMovieReviewsComponent {
 
   costOfReviews: number = 0;
   costOfReviewsTS: number = 0;
+  averageRating: number = 0;
 
   constructor(private reviewService: ReviewService) {}
 
@@ -21,6 +22,7 @@ export class AdminMovieReviewsComponent {
   ngOnChanges() {
     this.getReviewsMovie(this.movieId);
     this.getCostOfReviews(this.movieId);
+    this.getAverageRating(this.movieId);
   }
 
   getReviewsMovie(movieId: number) {
@@ -41,6 +43,14 @@ export class AdminMovieReviewsComponent {
       .getCosteOfReviewsForMovieByIdService(movieId)
       .subscribe((result) => {
         this.costOfReviews = result;
+      });
+  }
+
+  getAverageRating(movieId: number) {
+    this.reviewService
+      .getAverageOfRatingForMovieByIdService(movieId)
+      .subscribe((result) => {
+        this.averageRating = result;
       });
   }
 }

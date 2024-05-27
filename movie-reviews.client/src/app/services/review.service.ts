@@ -50,4 +50,10 @@ export class ReviewService {
       `${this.apiUrl}GetCosteOfReviewsForMovieById/${id}`
     );
   }
+
+  getAverageOfRatingForMovieByIdService(id: number): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiUrl}GetAverageOfRatingForMovieById/${id}`
+    );
+  }
 }
