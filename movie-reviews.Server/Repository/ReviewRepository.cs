@@ -77,6 +77,20 @@ namespace movie_reviews.Server.Repository
             return costOfreviews;
         }
 
+        public async Task<decimal> GetAverageOfRatingForMovieByIdRepository(int id)
+        {
+            var reviews = await _context.Reviews.Where(x => x.MovieId == id).ToListAsync();
+
+            if (reviews.Count == 0)
+            {
+                return 0; 
+            }
+
+            var averageRating = reviews.Average(x => x.Rating);
+
+            return (decimal)averageRating;
+        }
+
         public async Task<int> GetNumberOfReviewsForMovieByIdRepository(int id)
         {
            var countNumberForReviews = await _context.Reviews.Where(x => x.MovieId == id).CountAsync();

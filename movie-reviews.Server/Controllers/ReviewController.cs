@@ -46,7 +46,7 @@ namespace movie_reviews.Server.Controllers
         [HttpGet("GetCosteOfReviewsForMovieById/{id}")]
         public async Task<IActionResult> GetCosteOfReviewsForMovieById(int id)
         {
-            var reviewCost= await _reviewRepository.GetCosteOfReviewsForMovieByIdRepository(id);
+            var reviewCost = await _reviewRepository.GetCosteOfReviewsForMovieByIdRepository(id);
 
             if (reviewCost == null)
             {
@@ -54,6 +54,19 @@ namespace movie_reviews.Server.Controllers
             }
 
             return Ok(reviewCost);
+        }
+
+        [HttpGet("GetAverageOfRatingForMovieById/{id}")]
+        public async Task<IActionResult> GetAverageOfRatingForMovieById(int id)
+        {
+            var averageRating = await _reviewRepository.GetAverageOfRatingForMovieByIdRepository(id);
+
+            if (averageRating == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(averageRating);
         }
 
         [HttpGet("GetNumberOfReviews")]
