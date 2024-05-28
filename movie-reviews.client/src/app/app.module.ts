@@ -35,6 +35,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-reviews/admin-movie-reviews.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { RatingModule } from 'primeng/rating';
     AdminMovieReviewsComponent,
   ],
   imports: [
+    TooltipModule,
     RatingModule,
     SelectButtonModule,
     CalendarModule,

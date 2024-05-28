@@ -5,7 +5,7 @@ namespace movie_reviews.Server.Interfaces
 {
     public interface IMovieRepository
     {
-        Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, List<Category> enumCategory);
+        Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, DateTime? startDatepicker, DateTime? endDatepicker, List<Category> enumCategory);
         Task<Movie> CreateMovieRepository(Movie Movie);
         Task<Movie> GetMovieByIdRepository(int id);
         Task<Movie> UpdateMovieRepository(Movie updateMovie);

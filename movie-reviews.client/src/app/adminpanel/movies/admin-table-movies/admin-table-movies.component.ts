@@ -7,6 +7,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Category } from '../../../enums/category';
 import { ReviewService } from '../../../services/review.service';
 import { forkJoin, tap } from 'rxjs';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-admin-table-movies',
@@ -20,6 +21,8 @@ export class AdminTableMoviesComponent {
   selectedMovieId: number = 0;
   numberOfMoviesReviews: number = 0;
   numberOfReviewsMap: { [key: number]: number } = {};
+  startDatepicker: Date | null = null;
+  endDatepicker: Date | null = null;
 
   enumCategory: any[] = [
     { name: 'Sci-fi', value: Category.Scfi },
@@ -44,12 +47,22 @@ export class AdminTableMoviesComponent {
 
   onSelectChange(event: any) {
     this.valueSelectButton = event.value;
-    this.getMovies('', this.valueSelectButton);
+    this.getMovies('', '', '', this.valueSelectButton);
   }
 
-  getMovies(searchTerm = '', selectedValues?: number[]) {
+  getMovies(
+    searchTerm = '',
+    startDatepicker = ``,
+    endDatepicker = ``,
+    selectedValues?: number[]
+  ) {
     this.movieServices
-      .getMovieServices(searchTerm, selectedValues)
+      .getMovieServices(
+        searchTerm,
+        startDatepicker,
+        endDatepicker,
+        selectedValues
+      )
       .subscribe((result) => {
         this.movies = result;
 
@@ -67,8 +80,24 @@ export class AdminTableMoviesComponent {
       });
   }
 
+  getMoviesDate() {
+    const startDate = this.startDatepicker
+      ? this.startDatepicker.toISOString().split('T')[0]
+      : undefined;
+    const endDate = this.endDatepicker
+      ? this.endDatepicker.toISOString().split('T')[0]
+      : undefined;
+    this.getMovies(this.value, startDate, endDate);
+  }
+
   clearFilter() {
     this.value = '';
+    this.getMovies(this.value);
+  }
+
+  clearDates() {
+    this.startDatepicker = null;
+    this.endDatepicker = null;
     this.getMovies(this.value);
   }
 

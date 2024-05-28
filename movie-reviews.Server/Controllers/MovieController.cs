@@ -35,9 +35,9 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet()]
-        public async Task<IActionResult> GetAllMovies(string searchTerm = null, [FromQuery] List<Category> enumCategory = null)
+        public async Task<IActionResult> GetAllMovies(string searchTerm = null, DateTime? startDatepicker = null, DateTime? endDatepicker = null, [FromQuery] List<Category> enumCategory = null)
         {
-            var movie = await _movieRepository.GetMovieRepositry(searchTerm, enumCategory);
+            var movie = await _movieRepository.GetMovieRepositry(searchTerm, startDatepicker, endDatepicker, enumCategory);
 
             var movieGet = _mapper.Map<List<MovieGetDto>>(movie);
 

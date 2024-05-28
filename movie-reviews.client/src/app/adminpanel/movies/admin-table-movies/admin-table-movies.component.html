@@ -14,13 +14,34 @@
     severity="secondary"
     (click)="getMovies(value)"
   ></p-button>
+  <p-calendar
+    [(ngModel)]="startDatepicker"
+    dateFormat="dd.mm.yy"
+    placeholder="Start Date"
+  />
+  <p-calendar
+    [(ngModel)]="endDatepicker"
+    dateFormat="dd.mm.yy"
+    placeholder="End Date"
+  />
+  <p-button
+    label="Search by Date"
+    severity="secondary"
+    (click)="getMoviesDate()"
+    tooltipPosition="bottom"
+    pTooltip="Please select both start and end dates"
+  ></p-button>
+  <p-button
+    label="Clear Dates"
+    severity="secondary"
+    (click)="clearDates()"
+  ></p-button>
   <p-button
     pRipple
     class="p-button-success"
     (onClick)="openFormModal()"
     label="Add Movie"
   ></p-button>
-
   <p-selectButton
     [options]="enumCategory"
     [multiple]="true"

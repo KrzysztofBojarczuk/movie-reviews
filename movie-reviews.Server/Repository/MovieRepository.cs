@@ -40,13 +40,18 @@ namespace movie_reviews.Server.Repository
             return movie;
         }
 
-        public async Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, List<Category> enumCategory)
+        public async Task<ICollection<Movie>> GetMovieRepositry(string searchTerm, DateTime? startDatepicker, DateTime? endDatepicker, List<Category> enumCategory)
         {
             var query = await _context.Movies.ToListAsync();
 
             if (!searchTerm.IsNullOrEmpty())
             {
                 query = query.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower())).ToList();
+            }
+
+            if (startDatepicker.HasValue && endDatepicker.HasValue) 
+            {
+                query = query.Where(x => x.Releasetime >= startDatepicker && x.Releasetime <= endDatepicker).ToList();
             }
 
             if (!enumCategory.IsNullOrEmpty())
