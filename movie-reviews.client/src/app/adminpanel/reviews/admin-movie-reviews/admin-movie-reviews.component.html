@@ -1,5 +1,12 @@
 <h3 *ngIf="costOfReviews > 0">
-  Cost of reviews for this movie: {{ costOfReviews }}
+  Cost of reviews for this movie:
+  <p-inputNumber
+    [(ngModel)]="costOfReviews"
+    mode="currency"
+    currency="PLN"
+    locale="pl-PL"
+    [disabled]="true"
+  ></p-inputNumber>
 </h3>
 <h3 *ngIf="averageRating > 0">
   Average rating for this movie: {{ averageRating }}
