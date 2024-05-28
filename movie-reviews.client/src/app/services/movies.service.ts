@@ -13,8 +13,8 @@ export class MoviesService {
 
   getMovieServices(
     searchTerm: string = '',
-    startDatepicker?: string,
-    endDatepicker?: string,
+    startDatepicker: string = '',
+    endDatepicker: string = '',
     selectedValues?: number[]
   ): Observable<Movie[]> {
     let url = `${this.apiUrl}?searchTerm=${searchTerm}&startDatepicker=${startDatepicker}&endDatepicker=${endDatepicker}`;

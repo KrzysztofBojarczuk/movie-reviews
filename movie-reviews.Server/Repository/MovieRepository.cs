@@ -11,13 +11,11 @@ namespace movie_reviews.Server.Repository
 {
     public class MovieRepository : IMovieRepository
     {
-        private readonly IReviewRepository _reviewRepository;
         private readonly ApplicationDbContext _context;
 
-        public MovieRepository(ApplicationDbContext context, IReviewRepository reviewRepository)
+        public MovieRepository(ApplicationDbContext context)
         {
             _context = context;
-            _reviewRepository = reviewRepository;
         }
 
         public async Task<Movie> CreateMovieRepository(Movie movie)
