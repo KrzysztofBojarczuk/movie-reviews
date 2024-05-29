@@ -46,7 +46,13 @@
       <p class="m-2" style="overflow-wrap: break-word; text-align: justify">
         {{ item.text }}
       </p>
-      <p class="m-2">Rating {{ item.rating }}</p>
+      <p class="m-2">Rating {{ item.rating }}/10</p>
+      <p-rating
+        [stars]="10"
+        [(ngModel)]="item.rating"
+        [readonly]="true"
+        [cancel]="false"
+      ></p-rating>
 
       <!-- <p class="m-2">Cost Of Review {{ item.costOfReview }}</p> -->
       <div class="flex gap-3 justify-content-center">
