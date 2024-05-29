@@ -1,16 +1,30 @@
-<h3 *ngIf="costOfReviews > 0">
-  Cost of reviews for this movie:
-  <p-inputNumber
-    [(ngModel)]="costOfReviews"
-    mode="currency"
-    currency="PLN"
-    locale="pl-PL"
-    [disabled]="true"
-  ></p-inputNumber>
-</h3>
-<h3 *ngIf="averageRating > 0">
-  Average rating for this movie: {{ averageRating }}
-</h3>
+<div class="flex flex-column">
+  <h3
+    *ngIf="costOfReviews > 0"
+    class="flex align-items-center justify-content-center"
+  >
+    Cost of reviews for this movie:
+    <p-inputNumber
+      [(ngModel)]="costOfReviews"
+      mode="currency"
+      currency="PLN"
+      locale="pl-PL"
+      [disabled]="true"
+    ></p-inputNumber>
+  </h3>
+</div>
+<div *ngIf="averageRating > 0">
+  <h3 class="flex align-items-center justify-content-center">
+    Average rating for this movie: {{ averageRating }}/10
+  </h3>
+  <p-rating
+    class="flex align-items-center justify-content-center"
+    [stars]="10"
+    [(ngModel)]="averageRating"
+    [readonly]="true"
+    [cancel]="false"
+  ></p-rating>
+</div>
 <div *ngFor="let item of movieReviews" class="m-5">
   <p-card>
     <p class="m-2">
