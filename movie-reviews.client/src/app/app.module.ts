@@ -36,6 +36,7 @@ import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-rev
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
+import { UserUpdateComponent } from './adminpanel/users/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TooltipModule } from 'primeng/tooltip';
     AdminTableMoviesComponent,
     AdminFormMoviesComponent,
     AdminMovieReviewsComponent,
+    UserUpdateComponent,
   ],
   imports: [
     TooltipModule,
