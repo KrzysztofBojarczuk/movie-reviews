@@ -6,18 +6,22 @@ import {
   ConfirmEventType,
 } from 'primeng/api';
 import { UsersService } from '../../../services/users.service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { UserUpdateComponent } from '../user-update/user-update.component';
 
 @Component({
   selector: 'app-admin-table-users',
   templateUrl: './admin-table-users.component.html',
   styleUrl: './admin-table-users.component.css',
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService, DialogService],
 })
 export class AdminTableUsersComponent {
   users: User[] = [];
   value = '';
   userNumber: number = 0;
   selectedUsers: User[] = [];
+
+  ref: DynamicDialogRef | undefined;
 
   public columns = [
     { field: 'id', header: 'Id' },
@@ -29,7 +33,8 @@ export class AdminTableUsersComponent {
   constructor(
     private userService: UsersService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -106,6 +111,14 @@ export class AdminTableUsersComponent {
           });
         }, index * 500);
       });
+    });
+  }
+
+  updateUser(users: User) {
+    this.ref = this.dialogService.open(UserUpdateComponent, {
+      data: {
+        userData: users,
+      },
     });
   }
 }

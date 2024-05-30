@@ -3,5 +3,6 @@ export interface User {
   userName: string;
   email: string;
   userId: number;
+  active: boolean;
   numberOfReviews: number;
 }

@@ -34,6 +34,7 @@
       <th>Email</th>
       <th>Number of Reviews</th>
       <th>Select</th>
+      <th>Active</th>
       <th>Action</th>
     </tr>
   </ng-template>
@@ -51,9 +52,32 @@
       </td>
       <td>
         <i
+          class="pi"
+          [ngClass]="{
+            'pi-circle-on': users.active,
+            'pi-circle-fill': !users.active
+          }"
+          [ngStyle]="{
+            color: users.active ? 'green' : 'red'
+          }"
+        ></i>
+      </td>
+      <td>
+        <i
           (click)="deleteUser(users.id)"
           class="pi pi-trash"
-          style="font-size: 1.5rem; pointer-events: auto"
+          style="
+            font-size: 1.5rem;
+            pointer-events: auto;
+            cursor: pointer;
+            margin-right: 15px;
+          "
+          label="Confirm"
+        ></i>
+        <i
+          (click)="updateUser(users)"
+          class="pi pi-user"
+          style="font-size: 1.5rem; pointer-events: auto; cursor: pointer"
           label="Confirm"
         ></i>
       </td>
