@@ -1,0 +1,260 @@
+<form [formGroup]="userForm" (ngSubmit)="submit(userForm.value)">
+  <div class="flex flex-column gap-2">
+    <label for="userName">User Name</label>
+    <input
+      type="text"
+      formControlName="userName"
+      aria-describedby="userName-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="userName-help"
+      *ngIf="
+        userForm.get('userName')?.invalid && userForm.get('userName')?.touched
+      "
+    >
+      User Name required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      formControlName="email"
+      aria-describedby="email-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="email-help"
+      *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+    >
+      Email required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="emailConfirmed">Email Confirmed</label>
+    <p-checkbox formControlName="emailConfirmed" [binary]="true"></p-checkbox>
+    <small
+      class="text-red-500 mt-2"
+      id="emailConfirmed-help"
+      *ngIf="
+        userForm.get('emailConfirmed')?.invalid &&
+        userForm.get('emailConfirmed')?.touched
+      "
+    >
+      Email confirmation required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="phoneNumber">Phone Number</label>
+    <input
+      type="text"
+      formControlName="phoneNumber"
+      aria-describedby="phoneNumber-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="phoneNumber-help"
+      *ngIf="
+        userForm.get('phoneNumber')?.invalid &&
+        userForm.get('phoneNumber')?.touched
+      "
+    >
+      Phone Number required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="phoneNumberConfirmed">Phone Number Confirmed</label>
+    <p-checkbox
+      formControlName="phoneNumberConfirmed"
+      [binary]="true"
+    ></p-checkbox>
+    <small
+      class="text-red-500 mt-2"
+      id="phoneNumberConfirmed-help"
+      *ngIf="
+        userForm.get('phoneNumberConfirmed')?.invalid &&
+        userForm.get('phoneNumberConfirmed')?.touched
+      "
+    >
+      Phone number confirmation required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="twoFactorEnabled">Two Factor Enabled</label>
+    <p-checkbox formControlName="twoFactorEnabled" [binary]="true"></p-checkbox>
+    <small
+      class="text-red-500 mt-2"
+      id="twoFactorEnabled-help"
+      *ngIf="
+        userForm.get('twoFactorEnabled')?.invalid &&
+        userForm.get('twoFactorEnabled')?.touched
+      "
+    >
+      Two-factor authentication required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="lockoutEnd">Lockout End</label>
+    <p-calendar
+      formControlName="lockoutEnd"
+      aria-describedby="lockoutEnd-help"
+      dateFormat="yy-mm-dd"
+    ></p-calendar>
+    <small
+      class="text-red-500 mt-2"
+      id="lockoutEnd-help"
+      *ngIf="
+        userForm.get('lockoutEnd')?.invalid &&
+        userForm.get('lockoutEnd')?.touched
+      "
+    >
+      Lockout end date required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="lockoutEnabled">Lockout Enabled</label>
+    <p-checkbox formControlName="lockoutEnabled" [binary]="true"></p-checkbox>
+    <small
+      class="text-red-500 mt-2"
+      id="lockoutEnabled-help"
+      *ngIf="
+        userForm.get('lockoutEnabled')?.invalid &&
+        userForm.get('lockoutEnabled')?.touched
+      "
+    >
+      Lockout enabled is required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="active">Active</label>
+    <p-checkbox formControlName="active" [binary]="true"></p-checkbox>
+    <small
+      class="text-red-500 mt-2"
+      id="active-help"
+      *ngIf="userForm.get('active')?.invalid && userForm.get('active')?.touched"
+    >
+      Active status is required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="normalizedUserName">Normalized User Name</label>
+    <input
+      type="text"
+      formControlName="normalizedUserName"
+      aria-describedby="normalizedUserName-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="normalizedUserName-help"
+      *ngIf="
+        userForm.get('normalizedUserName')?.invalid &&
+        userForm.get('normalizedUserName')?.touched
+      "
+    >
+      Normalized User Name required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="normalizedEmail">Normalized Email</label>
+    <input
+      [disabled]="true"
+      type="text"
+      formControlName="normalizedEmail"
+      aria-describedby="normalizedEmail-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="normalizedEmail-help"
+      *ngIf="
+        userForm.get('normalizedEmail')?.invalid &&
+        userForm.get('normalizedEmail')?.touched
+      "
+    >
+      Normalized Email required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="concurrencyStamp">Concurrency Stamp</label>
+    <input
+      [disabled]="true"
+      type="text"
+      formControlName="concurrencyStamp"
+      aria-describedby="concurrencyStamp-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="concurrencyStamp-help"
+      *ngIf="
+        userForm.get('concurrencyStamp')?.invalid &&
+        userForm.get('concurrencyStamp')?.touched
+      "
+    >
+      Concurrency Stamp required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="passwordHash">Password Hash</label>
+    <input
+      [disabled]="true"
+      type="text"
+      formControlName="passwordHash"
+      aria-describedby="passwordHash-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="passwordHash-help"
+      *ngIf="
+        userForm.get('passwordHash')?.invalid &&
+        userForm.get('passwordHash')?.touched
+      "
+    >
+      Password Hash required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="securityStamp">Security Stamp</label>
+    <input
+      type="text"
+      formControlName="securityStamp"
+      aria-describedby="securityStamp-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="securityStamp-help"
+      *ngIf="
+        userForm.get('securityStamp')?.invalid &&
+        userForm.get('securityStamp')?.touched
+      "
+    >
+      Security Stamp required.
+    </small>
+  </div>
+
+  <p-button
+    type="submit"
+    label="Submit"
+    [style]="{ 'margin-top.px': 20 }"
+  ></p-button>
+</form>

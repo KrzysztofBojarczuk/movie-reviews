@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using movie_reviews.Server.Dtos;
 using movie_reviews.Server.Interfaces;
+using movie_reviews.Server.models;
 using movie_reviews.Server.Repository;
 
 namespace movie_reviews.Server.Controllers
@@ -10,8 +13,11 @@ namespace movie_reviews.Server.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _usersRepository;
-        public UsersController(IUserRepository usersRepository)
-        {
+        private readonly IMapper _mapper;
+
+        public UsersController(IMapper mapper, IUserRepository usersRepository)
+        { 
+             _mapper = mapper;
             _usersRepository = usersRepository;
         }
 
@@ -21,6 +27,18 @@ namespace movie_reviews.Server.Controllers
             var users = await _usersRepository.GettAllUsersRepository(searchTerm);
 
             return Ok(users);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto user, string id)
+        {
+            var userToUpdate = _mapper.Map<AppUser>(user);
+
+            userToUpdate.Id = id;
+
+            await _usersRepository.UpdateUserRepository(userToUpdate);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

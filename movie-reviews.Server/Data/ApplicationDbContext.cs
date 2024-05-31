@@ -17,10 +17,6 @@ namespace movie_reviews.Server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<AppUser>()
-                .Property(u => u.Active)
-                .HasDefaultValue(true);
         }
     }
 }

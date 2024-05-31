@@ -7,7 +7,7 @@ import {
 } from 'primeng/api';
 import { UsersService } from '../../../services/users.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UserUpdateComponent } from '../user-update/user-update.component';
+import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user.component';
 
 @Component({
   selector: 'app-admin-table-users',
@@ -115,10 +115,16 @@ export class AdminTableUsersComponent {
   }
 
   updateUser(users: User) {
-    this.ref = this.dialogService.open(UserUpdateComponent, {
+    const ref = this.dialogService.open(AdminUpdateUserComponent, {
+      header: 'Update User',
+      width: '70%',
       data: {
         userData: users,
       },
+    });
+
+    ref.onClose.subscribe(() => {
+      this.getAllUsers();
     });
   }
 }
