@@ -53,7 +53,7 @@ namespace movie_reviews.Server.Repository
         {
             var query = _context.Reviews.AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchTerm))
+            if (!searchTerm.IsNullOrEmpty())
             {
                 query = query.Where(x => x.Title.ToLower().Contains(searchTerm.ToLower()));
             }
