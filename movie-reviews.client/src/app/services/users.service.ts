@@ -31,4 +31,8 @@ export class UsersService {
 
     return this.http.get<string[]>(`${this.apiUrl}UserEmails?${params}`);
   }
+
+  updateUserService(id: string, user: User): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}${id}`, user);
+  }
 }

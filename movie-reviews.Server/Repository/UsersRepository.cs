@@ -94,5 +94,14 @@ namespace movie_reviews.Server.Repository
 
             return userEmails;
         }
+
+        public async Task<AppUser> UpdateUserRepository(AppUser updateUser)
+        {
+            _context.Users.Update(updateUser);
+
+            await _context.SaveChangesAsync();
+
+            return updateUser;
+        }
     }
 }

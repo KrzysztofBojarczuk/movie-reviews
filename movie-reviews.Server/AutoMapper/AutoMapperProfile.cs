@@ -13,6 +13,8 @@ namespace movie_reviews.Server.AutoMapper
 
             CreateMap<MovieCreateDto, Movie>();
             CreateMap<Movie, MovieGetDto>();
+
+            CreateMap<UserUpdateDto, AppUser>();
         }
     }
 }

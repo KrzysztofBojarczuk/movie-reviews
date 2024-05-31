@@ -36,7 +36,8 @@ import { AdminMovieReviewsComponent } from './adminpanel/reviews/admin-movie-rev
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
-import { UserUpdateComponent } from './adminpanel/users/user-update/user-update.component';
+import { AdminUpdateUserComponent } from './adminpanel/users/admin-update-user/admin-update-user.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,10 @@ import { UserUpdateComponent } from './adminpanel/users/user-update/user-update.
     AdminTableMoviesComponent,
     AdminFormMoviesComponent,
     AdminMovieReviewsComponent,
-    UserUpdateComponent,
+    AdminUpdateUserComponent,
   ],
   imports: [
+    CheckboxModule,
     TooltipModule,
     RatingModule,
     SelectButtonModule,
