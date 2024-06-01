@@ -76,9 +76,14 @@ export class AdminUpdateUserComponent {
     });
   }
 
-  submit(formValue: User): void {
-    this.userService
-      .updateUserService(this.user.id, formValue)
-      .subscribe(() => this.ref.close());
+  submit(user: User): void {
+    this.userService.updateUserService(this.user.id, user).subscribe(
+      () => {
+        this.ref.close({ accepted: true });
+      },
+      (error) => {
+        this.ref.close({ rejected: true });
+      }
+    );
   }
 }
