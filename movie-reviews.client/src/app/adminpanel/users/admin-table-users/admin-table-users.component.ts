@@ -123,7 +123,20 @@ export class AdminTableUsersComponent {
       },
     });
 
-    ref.onClose.subscribe(() => {
+    ref.onClose.subscribe((result) => {
+      if (result.accepted) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'User Updated',
+          detail: `User ${users.userName} has been updated successfully.`,
+        });
+      } else if (result.rejected) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Update Cancelled',
+          detail: `User ${users.userName} update has been cancelled.`,
+        });
+      }
       this.getAllUsers();
     });
   }
