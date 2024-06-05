@@ -8,6 +8,8 @@ import {
 import { UsersService } from '../../../services/users.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user.component';
+import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
+import { Review } from '../../../models/review';
 
 @Component({
   selector: 'app-admin-table-users',
@@ -20,6 +22,8 @@ export class AdminTableUsersComponent {
   value = '';
   userNumber: number = 0;
   selectedUsers: User[] = [];
+
+  expandedRows = {};
 
   ref: DynamicDialogRef | undefined;
 
@@ -40,6 +44,32 @@ export class AdminTableUsersComponent {
   ngOnInit() {
     this.getAllUsers();
     this.getNumberOfUsers();
+  }
+
+  expandAll() {
+    this.expandedRows = new Map(this.users.map((user) => [user.id, true]));
+  }
+
+  collapseAll() {
+    this.expandedRows = {};
+  }
+
+  onRowExpand(event: TableRowExpandEvent) {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'User Expanded',
+      detail: event.data.name,
+      life: 3000,
+    });
+  }
+
+  onRowCollapse(event: TableRowCollapseEvent) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'User Collapsed',
+      detail: event.data.name,
+      life: 3000,
+    });
   }
 
   getNumberOfUsers() {
