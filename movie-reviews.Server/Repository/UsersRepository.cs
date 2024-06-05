@@ -20,7 +20,7 @@ namespace movie_reviews.Server.Repository
 
         public async Task<ICollection<AppUser>> GettAllUsersRepository(string searchTerm)
         {
-            var query = await _context.Users.ToListAsync();
+            var query = await _context.Users.Include(x => x.Review).ToListAsync();
 
             if (!searchTerm.IsNullOrEmpty())
             {

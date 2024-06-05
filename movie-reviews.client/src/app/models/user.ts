@@ -1,3 +1,5 @@
+import { Review } from './review';
+
 export interface User {
   id: string;
   userName: string;
@@ -16,4 +18,5 @@ export interface User {
   accessFailedCount: number;
   active: boolean;
   numberOfReviews: number;
+  reviews: Review[];
 }
