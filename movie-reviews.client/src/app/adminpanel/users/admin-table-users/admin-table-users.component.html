@@ -35,8 +35,8 @@
       <th>Name</th>
       <th>Email</th>
       <th>Number of Reviews</th>
-      <th>Select</th>
       <th>Reviews</th>
+      <th>Select</th>
       <th>Active</th>
       <th>Action</th>
     </tr>
@@ -104,16 +104,32 @@
           <p-table [value]="users.review" dataKey="id">
             <ng-template pTemplate="header">
               <tr>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Rating</th>
                 <th>Text</th>
+                <th>Action</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-users>
               <tr>
+                <td>{{ users.id }}</td>
                 <td>{{ users.title }}</td>
                 <td>{{ users.rating }}</td>
                 <td>{{ users.text }}</td>
+                <td>
+                  <i
+                    (click)="deleteReview(users.id)"
+                    class="pi pi-trash"
+                    style="
+                      font-size: 1.5rem;
+                      pointer-events: auto;
+                      cursor: pointer;
+                      margin-right: 15px;
+                    "
+                    label="Confirm"
+                  ></i>
+                </td>
               </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

@@ -10,6 +10,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user.component';
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Review } from '../../../models/review';
+import { ReviewService } from '../../../services/review.service';
 
 @Component({
   selector: 'app-admin-table-users',
@@ -38,7 +39,8 @@ export class AdminTableUsersComponent {
     private userService: UsersService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private reviewService: ReviewService
   ) {}
 
   ngOnInit() {
@@ -104,6 +106,36 @@ export class AdminTableUsersComponent {
             severity: 'info',
             summary: 'Success',
             detail: 'User deleted successfully',
+          });
+          this.getAllUsers();
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Deletion Cancelled',
+          detail: 'The operation was cancelled',
+          life: 3000,
+        });
+      },
+    });
+  }
+
+  deleteReview(id: number) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this Review?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      rejectButtonStyleClass: 'p-button-text',
+
+      accept: () => {
+        this.reviewService.deleteReviewService(id).subscribe((result) => {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Success',
+            detail: 'Review deleted successfully',
           });
           this.getAllUsers();
         });
