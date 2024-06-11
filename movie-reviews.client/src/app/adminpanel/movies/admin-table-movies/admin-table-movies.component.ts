@@ -31,6 +31,8 @@ export class AdminTableMoviesComponent {
     { name: 'Thriler', value: Category.Thriler },
   ];
 
+  isSelectButtonOptionSelected: boolean = false;
+
   valueSelectButton: number[] = [];
 
   constructor(
@@ -47,6 +49,7 @@ export class AdminTableMoviesComponent {
 
   onSelectChange(event: any) {
     this.valueSelectButton = event.value;
+    this.isSelectButtonOptionSelected = this.valueSelectButton.length > 0;
     this.getMovies('', '', '', this.valueSelectButton);
   }
 
