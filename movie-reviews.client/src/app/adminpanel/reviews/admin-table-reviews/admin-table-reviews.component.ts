@@ -9,6 +9,7 @@ import {
   ConfirmEventType,
 } from 'primeng/api';
 import { SelectItem } from '../../../models/selectItem';
+import { AdminUpdateReviewsComponent } from '../admin-update-reviews/admin-update-reviews.component';
 
 @Component({
   selector: 'app-admin-table-reviews',
@@ -98,6 +99,33 @@ export class AdminTableReviewsComponent {
           life: 3000,
         });
       },
+    });
+  }
+
+  updateReview(review: Review) {
+    const ref = this.dialogService.open(AdminUpdateReviewsComponent, {
+      header: 'Update User',
+      width: '70%',
+      data: {
+        reviewData: review,
+      },
+    });
+
+    ref.onClose.subscribe((result) => {
+      if (result.accepted) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Review Updated',
+          detail: `Review ${review.title} has been updated successfully.`,
+        });
+      } else if (result.rejected) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Update Cancelled',
+          detail: `Review ${review.title}  update has been cancelled.`,
+        });
+      }
+      this.getReviews();
     });
   }
 

@@ -1,0 +1,148 @@
+<form [formGroup]="reviewForm" (ngSubmit)="submit(reviewForm.value)">
+  <div class="flex flex-column gap-2">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      formControlName="title"
+      aria-describedby="title-help"
+      pInputText
+    />
+    <small
+      class="text-red-500 mt-2"
+      id="title-help"
+      *ngIf="
+        reviewForm.get('title')?.invalid && reviewForm.get('title')?.touched
+      "
+    >
+      Title required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="text">Text</label>
+    <textarea
+      rows="5"
+      cols="30"
+      type="text"
+      formControlName="text"
+      aria-describedby="text-help"
+      pInputTextarea
+    ></textarea>
+    <small
+      class="text-red-500 mt-2"
+      id="text-help"
+      *ngIf="reviewForm.get('text')?.invalid && reviewForm.get('text')?.touched"
+    >
+      Text required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="rating">Rating</label>
+    <p-inputNumber
+      inputId="integeronly"
+      formControlName="rating"
+      aria-describedby="rating-help"
+      [min]="0"
+      [max]="10"
+    ></p-inputNumber>
+    <small
+      class="text-red-500 mt-2"
+      id="rating-help"
+      *ngIf="
+        reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched
+      "
+    >
+      Rating between 0 and 10 required.
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="movieSelect">Select Movie</label>
+    <select
+      formControlName="movieId"
+      aria-describedby="movieId-help"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+    >
+      <option *ngFor="let movie of movies" [value]="movie.id">
+        {{ movie.title }}
+      </option>
+    </select>
+    <small
+      class="text-red-500 mt-2"
+      id="movieId-help"
+      *ngIf="
+        reviewForm.get('movieId')?.invalid && reviewForm.get('movieId')?.touched
+      "
+    >
+      Movie selection required.
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="userSelect">Select User</label>
+    <select
+      formControlName="appUserId"
+      aria-describedby="appUserId-help"
+      class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      (change)="onReviewIdChange($event)"
+    >
+      <option *ngFor="let user of users" [value]="user.id">
+        {{ user.userName }}
+      </option>
+    </select>
+    <small
+      class="text-red-500 mt-2"
+      id="appUserId-help"
+      *ngIf="
+        reviewForm.get('appUserId')?.invalid &&
+        reviewForm.get('appUserId')?.touched
+      "
+    >
+      User selection required.
+    </small>
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="name">Name</label>
+    <input type="text" formControlName="userName" pInputText />
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="email">Email</label>
+    <input type="email" formControlName="email" pInputText />
+  </div>
+
+  <div class="flex flex-column gap-2 mt-2">
+    <label for="numberOfHours">Number of hours</label>
+    <p-inputNumber
+      inputId="numberOfHours"
+      formControlName="numberOfHours"
+    ></p-inputNumber>
+
+    <label for="rate">Rate</label>
+    <p-inputNumber
+      inputId="rate"
+      mode="currency"
+      currency="PLN"
+      locale="pl-PL"
+      formControlName="rate"
+    ></p-inputNumber>
+
+    <label for="costOfReview">Total Cost of Review</label>
+    <p-inputNumber
+      inputId="costOfReview"
+      mode="currency"
+      currency="PLN"
+      locale="pl-PL"
+      formControlName="costOfReview"
+    ></p-inputNumber>
+  </div>
+
+  <p-button
+    [style]="{ 'margin-top.px': 20 }"
+    type="submit"
+    [disabled]="reviewForm.invalid"
+    label="Submit"
+  ></p-button>
+</form>
