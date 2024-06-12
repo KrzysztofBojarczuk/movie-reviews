@@ -65,7 +65,13 @@
           [disabled]="true"
         />
       </div>
-      <div class="mt-2">
+      <div class="flex gap-3 justify-content-center mt-5">
+        <p-button
+          label="Update review"
+          severity="success"
+          (onClick)="updateReview(item)"
+        ></p-button>
+
         <p-button
           label="Delete review"
           severity="danger"

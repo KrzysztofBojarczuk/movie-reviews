@@ -23,6 +23,13 @@ export class ReviewService {
     return this.http.post<Review>(this.apiUrl, review);
   }
 
+  updateReviewService(review: Review, id: number): Observable<Review> {
+    return this.http.put<Review>(
+      `${this.apiUrl}${id}/${review.appUserId}`,
+      review
+    );
+  }
+
   deleteReviewService(id: number): Observable<number> {
     return this.http.delete<number>(`${this.apiUrl}${id}`);
   }
