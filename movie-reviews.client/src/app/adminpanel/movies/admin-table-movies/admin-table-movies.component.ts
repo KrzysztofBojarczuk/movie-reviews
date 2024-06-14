@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { MoviesService } from '../../../services/movies.service';
 import { Movie } from '../../../models/movie';
 import { AdminFormMoviesComponent } from '../admin-form-movies/admin-form-movies.component';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Category } from '../../../enums/category';
 import { ReviewService } from '../../../services/review.service';
 import { forkJoin, tap } from 'rxjs';
 import { Data } from '@angular/router';
+import { AdminUpdateMoviesComponent } from '../admin-update-movies/admin-update-movies.component';
 
 @Component({
   selector: 'app-admin-table-movies',
@@ -154,6 +155,42 @@ export class AdminTableMoviesComponent {
           life: 3000,
         });
       },
+    });
+  }
+
+  updateMovie(movie: Movie) {
+    const ref = this.dialogService.open(AdminUpdateMoviesComponent, {
+      header: 'Update Movie',
+      width: '70%',
+      height: '60%',
+      data: {
+        movieData: movie,
+      },
+    });
+
+    ref.onClose.subscribe((result) => {
+      if (result) {
+        if (result.accepted) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Movie Updated',
+            detail: `Movie ${movie.title} has been updated successfully.`,
+          });
+        } else if (result.rejected) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Update Cancelled',
+            detail: `Movie ${movie.title} update has been cancelled.`,
+          });
+        }
+      } else {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Dialog Closed',
+          detail: `Dialog was closed without any action.`,
+        });
+      }
+      this.getMovies();
     });
   }
 }
