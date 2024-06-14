@@ -65,6 +65,11 @@
         <p>{{ item.releasetime | date : "yyyy-MM-dd" }}</p>
         <div class="flex gap-3 justify-content-center">
           <p-button
+            label="Update review"
+            severity="success"
+            (onClick)="updateMovie(item)"
+          ></p-button>
+          <p-button
             label="Delete Movie"
             severity="danger"
             (onClick)="deleteMovie(item.id)"

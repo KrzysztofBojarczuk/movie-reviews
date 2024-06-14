@@ -39,6 +39,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { AdminUpdateUserComponent } from './adminpanel/users/admin-update-user/admin-update-user.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AdminUpdateReviewsComponent } from './adminpanel/reviews/admin-update-reviews/admin-update-reviews.component';
+import { AdminUpdateMoviesComponent } from './adminpanel/movies/admin-update-movies/admin-update-movies.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { AdminUpdateReviewsComponent } from './adminpanel/reviews/admin-update-r
     AdminMovieReviewsComponent,
     AdminUpdateUserComponent,
     AdminUpdateReviewsComponent,
+    AdminUpdateMoviesComponent,
   ],
   imports: [
     CheckboxModule,
