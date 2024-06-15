@@ -50,13 +50,25 @@ export class AdminUpdateMoviesComponent {
   }
 
   submit(movie: Movie) {
-    this.movieServices.updateMovieService(movie, this.movie.id).subscribe(
-      () => {
-        this.ref.close({ accepted: true });
-      },
-      (error) => {
-        this.ref.close({ rejected: true });
-      }
-    );
+    const updatedMovie: Movie = {
+      ...movie,
+      releasetime: this.adjustDate(movie.releasetime),
+    };
+
+    this.movieServices
+      .updateMovieService(updatedMovie, this.movie.id)
+      .subscribe(
+        () => {
+          this.ref.close({ accepted: true });
+        },
+        (error) => {
+          this.ref.close({ rejected: true });
+        }
+      );
+  }
+
+  private adjustDate(date: Date): Date {
+    const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() - userTimezoneOffset);
   }
 }
