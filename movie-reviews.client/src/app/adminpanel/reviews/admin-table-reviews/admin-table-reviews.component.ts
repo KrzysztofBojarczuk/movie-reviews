@@ -112,17 +112,25 @@ export class AdminTableReviewsComponent {
     });
 
     ref.onClose.subscribe((result) => {
-      if (result.accepted) {
+      if (result) {
+        if (result.accepted) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Review Updated',
+            detail: `Review ${review.title} has been updated successfully.`,
+          });
+        } else if (result.rejected) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Update Cancelled',
+            detail: `Review ${review.title}  update has been cancelled.`,
+          });
+        }
+      } else {
         this.messageService.add({
-          severity: 'success',
-          summary: 'Review Updated',
-          detail: `Review ${review.title} has been updated successfully.`,
-        });
-      } else if (result.rejected) {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Update Cancelled',
-          detail: `Review ${review.title}  update has been cancelled.`,
+          severity: 'info',
+          summary: 'Dialog Closed',
+          detail: `Dialog was closed without any action.`,
         });
       }
       this.getReviews();
