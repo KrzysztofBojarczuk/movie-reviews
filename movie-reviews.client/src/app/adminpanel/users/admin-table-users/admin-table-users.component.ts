@@ -186,17 +186,25 @@ export class AdminTableUsersComponent {
     });
 
     ref.onClose.subscribe((result) => {
-      if (result.accepted) {
+      if (result) {
+        if (result.accepted) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'User Updated',
+            detail: `User ${users.userName} has been updated successfully.`,
+          });
+        } else if (result.rejected) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Update Cancelled',
+            detail: `User ${users.userName} update has been cancelled.`,
+          });
+        }
+      } else {
         this.messageService.add({
-          severity: 'success',
-          summary: 'User Updated',
-          detail: `User ${users.userName} has been updated successfully.`,
-        });
-      } else if (result.rejected) {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Update Cancelled',
-          detail: `User ${users.userName} update has been cancelled.`,
+          severity: 'info',
+          summary: 'Dialog Closed',
+          detail: `Dialog was closed without any action.`,
         });
       }
       this.getAllUsers();
