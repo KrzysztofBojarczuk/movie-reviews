@@ -54,15 +54,16 @@ export class AdminFormReviewsComponent {
     this.getAllUsers();
     this.getAllMovies();
 
-    //combineLatest łączy obserwowalne strumienie
-    //pipe to metoda używana w strumieniach RxJS do łączenia wielu operatoró
-    //map to operator, który przetwarza wartości emitowane przez strumień i zwraca przetworzone wartości. Jest to sposób na przekształcenie jednej wartości w inną.
-    combineLatest([
-      this.reviewForm.get('numberOfHours')?.valueChanges || of(0), // Provide a default value if undefined
-      this.reviewForm.get('rate')?.valueChanges || of(0), // Provide a default value if undefined
-    ])
-      .pipe(map(([numberOfHours, rate]) => numberOfHours * rate))
-      .subscribe((tot) => this.reviewForm.get('costOfReview')?.setValue(tot));
+    this.reviewForm.valueChanges.subscribe(() => {
+      const numberOfHours = this.reviewForm.get('numberOfHours')?.value || 0;
+      const rate = this.reviewForm.get('rate')?.value || 0;
+      this.calculateCostOfReview(numberOfHours, rate);
+    });
+  }
+
+  calculateCostOfReview(numberOfHours: number, rate: number) {
+    const costOfReview = numberOfHours * rate;
+    this.reviewForm.get('costOfReview')?.setValue(costOfReview);
   }
 
   submit(review: Review) {

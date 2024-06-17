@@ -60,13 +60,6 @@ export class AdminUpdateReviewsComponent {
     this.getAllUsers();
     this.getAllMovies();
 
-    combineLatest([
-      this.reviewForm.get('numberOfHours')?.valueChanges || of(0),
-      this.reviewForm.get('rate')?.valueChanges || of(0),
-    ])
-      .pipe(map(([numberOfHours, rate]) => numberOfHours * rate))
-      .subscribe((tot) => this.reviewForm.get('costOfReview')?.setValue(tot));
-
     this.review = { ...this.config.data.reviewData };
 
     this.reviewForm.patchValue({
@@ -79,6 +72,17 @@ export class AdminUpdateReviewsComponent {
       rate: this.review.rate,
       costOfReview: this.review.costOfReview,
     });
+
+    this.reviewForm.valueChanges.subscribe(() => {
+      const numberOfHours = this.reviewForm.get('numberOfHours')?.value || 0;
+      const rate = this.reviewForm.get('rate')?.value || 0;
+      this.calculateCostOfReview(numberOfHours, rate);
+    });
+  }
+
+  calculateCostOfReview(numberOfHours: number, rate: number) {
+    const costOfReview = numberOfHours * rate;
+    this.reviewForm.get('costOfReview')?.setValue(costOfReview);
   }
 
   submit(review: Review) {
