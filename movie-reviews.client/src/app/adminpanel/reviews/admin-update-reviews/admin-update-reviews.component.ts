@@ -82,7 +82,9 @@ export class AdminUpdateReviewsComponent {
 
   calculateCostOfReview(numberOfHours: number, rate: number) {
     const costOfReview = numberOfHours * rate;
-    this.reviewForm.get('costOfReview')?.setValue(costOfReview);
+    this.reviewForm
+      .get('costOfReview')
+      ?.setValue(costOfReview, { emitEvent: false });
   }
 
   submit(review: Review) {
