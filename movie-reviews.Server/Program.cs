@@ -40,6 +40,9 @@ var app = builder.Build();
 
 app.MapIdentityApi<AppUser>();
 
+//Asp.net Middleware
+app.UseRequestLogging();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
