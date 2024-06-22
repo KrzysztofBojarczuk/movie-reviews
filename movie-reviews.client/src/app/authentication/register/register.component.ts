@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +10,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private authenticationService: AuthenticationService
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: [
@@ -30,6 +27,6 @@ export class RegisterComponent {
   }
 
   onSubmit(register: any) {
-    this.authenticationService.registerUserService(register).subscribe();
+    this.authService.registerUserService(register).subscribe();
   }
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { LoginRequest } from '../../models/login-request';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -31,9 +32,22 @@ export class LoginComponent {
     });
   }
 
-  onSubmit(login: any) {
-    this.authenticationService.loginUserService(login).subscribe();
+  // ngOnInit(): void {
+  //   this.isLoggedIn();
+  // }
+
+  onSubmit(login: LoginRequest) {
+    this.authService.login(login).subscribe(() => {
+      console.log('Login successful');
+      this.router.navigate(['']);
+    });
   }
 
-  moveToSignUp() {}
+  moveToSignUp() {
+    this.router.navigate(['register']);
+  }
+
+  // isLoggedIn() {
+  //   return this.authService.isLoggedIn();
+  // }
 }
