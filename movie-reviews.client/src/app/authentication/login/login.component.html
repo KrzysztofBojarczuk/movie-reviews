@@ -47,13 +47,12 @@
           label="Login"
           [disabled]="loginForm.invalid"
         ></p-button>
-        <p-button
-          class="mt-5"
-          type="submit"
-          label="Sign Up"
-          routerLink=""
-          (click)="moveToSignUp()"
-        ></p-button>
+        <span class="text-sm text-gray-600 mt-5">
+          You don't have an account?
+          <a routerLink="/register" class="text-blue-500 hover:text-blue-700"
+            >Register</a
+          >
+        </span>
       </div>
     </form>
   </p-card>
