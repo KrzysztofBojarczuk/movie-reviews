@@ -9,15 +9,5 @@ import { AuthService } from '../services/auth.service';
 export class LayoutComponent {
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.isLoggedIn();
-  }
-
-  logout() {
-    this.authService.logout();
-  }
-
-  isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
+  ngOnInit(): void {}
 }

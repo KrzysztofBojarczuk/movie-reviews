@@ -10,18 +10,23 @@ import { AuthGuard } from './AuthGuard/AuthGuard';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
-    path: '',
-    component: LayoutComponent,
+    path: 'users',
+    component: AdminTableUsersComponent,
     canActivate: [AuthGuard],
-    children: [
-      { path: 'users', component: AdminTableUsersComponent },
-      { path: 'reviews', component: AdminTableReviewsComponent },
-      { path: 'movies', component: AdminTableMoviesComponent },
-    ],
+  },
+  {
+    path: 'reviews',
+    component: AdminTableReviewsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'movies',
+    component: AdminTableMoviesComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
