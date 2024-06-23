@@ -32,14 +32,14 @@ export class LoginComponent {
     });
   }
 
-  // ngOnInit(): void {
-  //   this.isLoggedIn();
-  // }
+  ngOnInit(): void {
+    this.isLoggedIn();
+  }
 
   onSubmit(login: LoginRequest) {
     this.authService.login(login).subscribe(() => {
       console.log('Login successful');
-      this.router.navigate(['']);
+      this.router.navigate(['reviews']);
     });
   }
 
@@ -47,7 +47,7 @@ export class LoginComponent {
     this.router.navigate(['register']);
   }
 
-  // isLoggedIn() {
-  //   return this.authService.isLoggedIn();
-  // }
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 }
