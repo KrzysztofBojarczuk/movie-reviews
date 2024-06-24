@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
+import { RegisterRequest } from '../models/register-request';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,13 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
-  registerUserService(registerUser: any): Observable<any> {
-    return this.httpClient.post<any>(this.apiUrl + 'register', registerUser);
+  registerUserService(
+    registerUser: RegisterRequest
+  ): Observable<RegisterRequest> {
+    return this.httpClient.post<RegisterRequest>(
+      this.apiUrl + 'register',
+      registerUser
+    );
   }
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
