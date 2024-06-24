@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { RegisterRequest } from '../../models/register-request';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  duplicateError = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
@@ -26,7 +29,18 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit(register: any) {
-    this.authService.registerUserService(register).subscribe();
+  onSubmit(register: RegisterRequest) {
+    this.duplicateError = false;
+    this.authService
+      .registerUserService(register)
+      .pipe(
+        catchError((error) => {
+          if (error.error.errors?.DuplicateUserName) {
+            this.duplicateError = true;
+          }
+          return throwError(error);
+        })
+      )
+      .subscribe();
   }
 }

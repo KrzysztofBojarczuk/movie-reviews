@@ -39,6 +39,9 @@
           Password must be at least 6 characters long, contain at least one
           uppercase letter, and one special character.
         </small>
+        <div *ngIf="duplicateError" class="text-red-500 mt-2">
+          Email is already taken.
+        </div>
       </div>
 
       <div class="flex justify-content-center">
