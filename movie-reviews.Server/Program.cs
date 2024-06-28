@@ -30,11 +30,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddIdentityCore<AppUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddApiEndpoints();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireRole",
+         policy => policy.RequireRole("Administrator", "User", "Spectator"));
+});
 
 var app = builder.Build();
 
