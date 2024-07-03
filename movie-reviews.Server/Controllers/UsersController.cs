@@ -11,6 +11,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize()]
     //[Authorize(Roles = "Administrator")]
     public class UsersController : ControllerBase
     {

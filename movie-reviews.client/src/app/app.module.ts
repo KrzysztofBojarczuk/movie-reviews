@@ -40,7 +40,7 @@ import { AdminUpdateUserComponent } from './adminpanel/users/admin-update-user/a
 import { CheckboxModule } from 'primeng/checkbox';
 import { AdminUpdateReviewsComponent } from './adminpanel/reviews/admin-update-reviews/admin-update-reviews.component';
 import { AdminUpdateMoviesComponent } from './adminpanel/movies/admin-update-movies/admin-update-movies.component';
-import { JwtInterceptor } from './interceptors/jwt-interceptor';
+import { JwtInterceptor } from './interceptors/access-token-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { LayoutComponent } from './layout/layout.component';
 

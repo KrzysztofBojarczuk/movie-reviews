@@ -6,8 +6,8 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { LoginComponent } from './authentication/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminTableMoviesComponent } from './adminpanel/movies/admin-table-movies/admin-table-movies.component';
-import { AuthGuard } from './AuthGuard/AuthGuard';
 import { LayoutComponent } from './layout/layout.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -16,17 +16,17 @@ const routes: Routes = [
   {
     path: 'users',
     component: AdminTableUsersComponent,
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
   {
     path: 'reviews',
     component: AdminTableReviewsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
   {
     path: 'movies',
     component: AdminTableMoviesComponent,
-    canActivate: [AuthGuard],
+    canActivate: [authGuard],
   },
 ];
 

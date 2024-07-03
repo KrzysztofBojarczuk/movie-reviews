@@ -74,5 +74,6 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
+app.MapGet("/validate-access-token", () => Results.Ok(true)).RequireAuthorization();
 
 app.Run();
