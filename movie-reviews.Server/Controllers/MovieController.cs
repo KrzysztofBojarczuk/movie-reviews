@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using movie_reviews.Server.Dtos;
@@ -11,6 +12,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize()]
     public class MovieController : ControllerBase
     {
         private readonly IMovieRepository _movieRepository;

@@ -11,6 +11,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize()]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewRepository _reviewRepository;

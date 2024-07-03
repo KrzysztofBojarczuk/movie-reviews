@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { RegisterRequest } from '../models/register-request';
+import { flush } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root',
@@ -67,7 +68,14 @@ export class AuthService {
     localStorage.removeItem('accessToken');
   }
 
-  isLoggedIn(): boolean {
-    return localStorage.getItem('accessToken') !== null;
+  isLoggedIn(): Observable<boolean> {
+    if (localStorage.getItem('accessToken') === null) {
+      return of(false);
+    }
+
+    return this.httpClient.get(this.apiUrl + 'validate-access-token').pipe(
+      map(() => true),
+      catchError(() => of(false))
+    );
   }
 }
