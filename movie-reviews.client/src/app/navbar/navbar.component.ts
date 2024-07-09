@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent {
   items: MenuItem[] = [];
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
 
@@ -22,24 +23,20 @@ export class NavbarComponent {
         {
           label: 'Users',
           routerLink: '/users',
-          visible: isLoggedIn,
         },
         {
           label: 'Reviews',
           routerLink: '/reviews',
-          visible: isLoggedIn,
         },
         {
           label: 'Movies',
           routerLink: '/movies',
-          visible: isLoggedIn,
         },
         {
-          label: isLoggedIn ? 'Logout' : 'Login',
-          routerLink: isLoggedIn ? '/logout' : '/login',
-          icon: isLoggedIn ? 'pi pi-sign-out' : 'pi pi-sign-in',
-          command: isLoggedIn ? () => this.logout() : undefined,
-          visible: true,
+          label: 'Logout',
+          routerLink: '/login',
+          icon: 'pi pi-sign-out',
+          command: () => this.logout(),
         },
       ];
     });
@@ -47,5 +44,6 @@ export class NavbarComponent {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
