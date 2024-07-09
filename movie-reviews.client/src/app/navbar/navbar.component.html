@@ -1,2 +1,2 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar *ngIf="isLoggedIn$ | async" [model]="items"></p-menubar>
 <router-outlet></router-outlet>
