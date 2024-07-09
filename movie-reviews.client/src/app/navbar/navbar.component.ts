@@ -18,28 +18,26 @@ export class NavbarComponent {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.items = [
-        {
-          label: 'Users',
-          routerLink: '/users',
-        },
-        {
-          label: 'Reviews',
-          routerLink: '/reviews',
-        },
-        {
-          label: 'Movies',
-          routerLink: '/movies',
-        },
-        {
-          label: 'Logout',
-          routerLink: '/login',
-          icon: 'pi pi-sign-out',
-          command: () => this.logout(),
-        },
-      ];
-    });
+    this.items = [
+      {
+        label: 'Users',
+        routerLink: '/users',
+      },
+      {
+        label: 'Reviews',
+        routerLink: '/reviews',
+      },
+      {
+        label: 'Movies',
+        routerLink: '/movies',
+      },
+      {
+        label: 'Logout',
+        routerLink: '/login',
+        icon: 'pi pi-sign-out',
+        command: () => this.logout(),
+      },
+    ];
   }
 
   logout(): void {
