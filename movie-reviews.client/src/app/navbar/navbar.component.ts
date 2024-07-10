@@ -14,7 +14,7 @@ export class NavbarComponent {
   isLoggedIn$: Observable<boolean>;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
   }
 
   ngOnInit(): void {

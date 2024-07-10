@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { RegisterRequest } from '../models/register-request';
@@ -11,6 +11,9 @@ import { flush } from '@angular/core/testing';
 })
 export class AuthService {
   private apiUrl = 'https://localhost:7068/';
+
+  private loggedInSubject = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -30,6 +33,7 @@ export class AuthService {
         map((response) => {
           localStorage.setItem('accessToken', response.accessToken);
           document.cookie = `refreshToken=${response.refreshToken};`;
+          this.loggedInSubject.next(true);
           return response;
         })
       );
@@ -66,6 +70,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('accessToken');
+    this.loggedInSubject.next(false);
   }
 
   isLoggedIn(): Observable<boolean> {
