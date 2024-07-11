@@ -1,5 +1,5 @@
 ![1](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/8c8d7548-ffeb-4ec1-a1e7-2c32b5a0c982)
 ![2](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/7e38898b-6b22-461d-b144-9a833100594c)
-![3](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/54106ad4-7f94-406e-b35f-32436fc1bec1)
-![4](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/0ac5bcf0-de5e-4f04-8539-f7e74774a240)
-![5](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/7c40099c-fab0-4156-9f2b-03d3f373f3d5)
+![3](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/40034e3c-08cc-4c53-8e9f-4fb9c4ee20d8)
+![4](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/756b7144-f957-47d4-bfd7-ab2134309bdd)
+![5](https://github.com/KrzysztofBojarczuk/movie-reviews/assets/69596796/c25ea480-9fe7-4fc2-adc3-78feb20f4e91)
