@@ -45,6 +45,14 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    await SeedData.SeedAdminUser(services);
+}
+
 app.MapIdentityApi<AppUser>();
 
 //Asp.net Middleware
