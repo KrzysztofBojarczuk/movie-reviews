@@ -12,7 +12,7 @@ import { flush } from '@angular/core/testing';
 export class AuthService {
   private apiUrl = 'https://localhost:7068/';
 
-  private loggedInSubject = new BehaviorSubject<boolean>(false);
+  private loggedInSubject = new BehaviorSubject<boolean>(this.hasAccessToken());
   isLoggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {}
@@ -59,7 +59,6 @@ export class AuthService {
 
     for (const cookie of cookieArray) {
       const [name, value] = cookie.split('=');
-
       if (name == 'refreshToken') {
         return value;
       }
@@ -82,5 +81,9 @@ export class AuthService {
       map(() => true),
       catchError(() => of(false))
     );
+  }
+
+  private hasAccessToken(): boolean {
+    return localStorage.getItem('accessToken') !== null;
   }
 }
