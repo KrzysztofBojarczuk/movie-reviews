@@ -43,6 +43,7 @@ import { AdminUpdateMoviesComponent } from './adminpanel/movies/admin-update-mov
 import { JwtInterceptor } from './interceptors/access-token-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { LayoutComponent } from './layout/layout.component';
+import { SpectatorComponent } from './SpectatorView/spectator/spectator.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { LayoutComponent } from './layout/layout.component';
     AdminUpdateReviewsComponent,
     AdminUpdateMoviesComponent,
     LayoutComponent,
+    SpectatorComponent,
   ],
   imports: [
     CheckboxModule,
