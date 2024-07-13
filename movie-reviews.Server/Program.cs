@@ -40,7 +40,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireRole",
-         policy => policy.RequireRole("Administrator", "User", "Spectator"));
+         policy => policy.RequireRole("Administrator", "User"));
 });
 
 var app = builder.Build();

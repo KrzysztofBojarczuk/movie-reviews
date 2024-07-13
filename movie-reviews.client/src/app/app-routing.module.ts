@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdminTableMoviesComponent } from './adminpanel/movies/admin-table-movies/admin-table-movies.component';
 import { LayoutComponent } from './layout/layout.component';
 import { authGuard } from './guards/auth.guard';
+import { SpectatorComponent } from './SpectatorView/spectator/spectator.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'movies',
     component: AdminTableMoviesComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'Spectator',
+    component: SpectatorComponent,
     canActivate: [authGuard],
   },
 ];

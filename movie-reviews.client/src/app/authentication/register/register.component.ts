@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { RegisterRequest } from '../../models/register-request';
 import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,11 @@ export class RegisterComponent {
   registerForm: FormGroup;
   duplicateError = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: [
@@ -41,6 +46,8 @@ export class RegisterComponent {
           return throwError(error);
         })
       )
-      .subscribe();
+      .subscribe(() => {
+        this.router.navigate(['login']);
+      });
   }
 }

@@ -11,7 +11,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize()]
+    [Authorize(Roles = "Administrator, User")]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewRepository _reviewRepository;
@@ -82,7 +82,6 @@ namespace movie_reviews.Server.Controllers
 
             return Ok(reviews);
         }
-
 
         [HttpPost()]
         public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review)

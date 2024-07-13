@@ -32,6 +32,10 @@ export class NavbarComponent {
         routerLink: '/movies',
       },
       {
+        label: 'Spectator',
+        routerLink: '/Spectator',
+      },
+      {
         label: 'Logout',
         routerLink: '/login',
         icon: 'pi pi-sign-out',
