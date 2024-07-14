@@ -32,7 +32,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentityCore<AppUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddApiEndpoints();
+                .AddApiEndpoints()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -50,7 +51,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    await SeedData.SeedAdminUser(services);
+    await SeedData.SeedUser(services);
 }
 
 app.MapIdentityApi<AppUser>();
