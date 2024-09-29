@@ -84,6 +84,7 @@
       </p-card>
     </div>
   </div>
+  <h1 *ngIf="movies?.length === 0">No Movies</h1>
   <div class="col-6">
     <app-admin-movie-reviews
       [movieId]="selectedMovieId"
