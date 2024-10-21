@@ -24,6 +24,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetAllUsers")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<AppUser>))]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> GetAllUsers(string searchTerm = null)
         {
             var users = await _usersRepository.GettAllUsersRepository(searchTerm);
