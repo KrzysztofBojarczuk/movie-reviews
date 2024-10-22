@@ -34,6 +34,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateDto user, string id)
         {
             var userToUpdate = _mapper.Map<AppUser>(user);
@@ -46,6 +48,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var deleteUser = await _usersRepository.DeleteUserRepository(id);
@@ -59,6 +63,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("UserReview/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult>  GetUserWithReviews(string id)
         {
             var userReview = await _usersRepository.GetUserWithReviewsRepository(id);
@@ -72,6 +78,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("UserNumber")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetNumberUsers()
         {
             var userNumber = await _usersRepository.GetNumberUsersRepository();
@@ -85,6 +93,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("UserEmails")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetUserEmails([FromQuery] List<string> userId)
         {
             var userEmails = await _usersRepository.GetUserEmailsRepository(userId);
