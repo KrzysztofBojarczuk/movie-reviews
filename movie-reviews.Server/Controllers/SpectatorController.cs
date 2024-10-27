@@ -26,6 +26,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("Movies")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetAllMovies(string searchTerm = null, DateTime? startDatepicker = null, DateTime? endDatepicker = null, [FromQuery] List<Category> enumCategory = null)
         {
             var movie = await _movieRepository.GetMovieRepositry(searchTerm, startDatepicker, endDatepicker, enumCategory);
@@ -36,6 +38,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetAverageOfRatingForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetAverageOfRatingForMovieById(int id)
         {
             var averageRating = await _reviewRepository.GetAverageOfRatingForMovieByIdRepository(id);
@@ -49,6 +53,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetCosteOfReviewsForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetCosteOfReviewsForMovieById(int id)
         {
             var reviewCost = await _reviewRepository.GetCosteOfReviewsForMovieByIdRepository(id);
@@ -62,6 +68,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetReviewsByMovieId/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetReviewsByMovieId(int id)
         {
             var review = await _reviewRepository.GetReviewsByMovieIdRepository(id);
@@ -72,6 +80,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("CountReviewsForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetNumberReviewsForMovieById(int id)
         {
             var reviewsCount = await _reviewRepository.GetNumberOfReviewsForMovieByIdRepository(id);
