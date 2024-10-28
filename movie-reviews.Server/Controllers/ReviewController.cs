@@ -25,6 +25,8 @@ namespace movie_reviews.Server.Controllers
 
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Review>))]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetAllReviews(string searchTerm = null, string sortOrder = null)
         {
             var review = await _reviewRepository.GetAllReviewsRepository(searchTerm, sortOrder);
@@ -35,6 +37,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetReviewsByMovieId/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetReviewsByMovieId(int id)
         {
             var review = await _reviewRepository.GetReviewsByMovieIdRepository(id);
@@ -45,6 +49,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetCosteOfReviewsForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetCosteOfReviewsForMovieById(int id)
         {
             var reviewCost = await _reviewRepository.GetCosteOfReviewsForMovieByIdRepository(id);
@@ -58,6 +64,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetAverageOfRatingForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetAverageOfRatingForMovieById(int id)
         {
             var averageRating = await _reviewRepository.GetAverageOfRatingForMovieByIdRepository(id);
@@ -71,6 +79,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("GetNumberOfReviews")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetNumberOfReviews()
         {
             var reviews = await _reviewRepository.GetNumberOfReviewsRepository();
@@ -84,6 +94,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> CreateReview([FromBody] ReviewCreateDto review)
         {
             var reviewCreate = _mapper.Map<Review>(review);
@@ -98,6 +110,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetReviewById(int id)
         {
             var review = await _reviewRepository.GetReviewByIdRepository(id);
@@ -113,6 +127,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpPut("{id}/{userId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateReview([FromBody] ReviewCreateDto review, int id, string userId)
         {
             var toUpdateReview = _mapper.Map<Review>(review);
@@ -127,6 +143,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("CountReviewsForMovieById/{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetNumberReviewsForMovieById(int id)
         {
             var reviewsCount = await _reviewRepository.GetNumberOfReviewsForMovieByIdRepository(id);
@@ -140,6 +158,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("CountReviewsByUserId/{userId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetNumberReviewsByUserId(string userId)
         {
             var reviewsCount = await _reviewRepository.GetNumberReviewsByUserIdRepository(userId);
@@ -153,6 +173,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> DeleteReview(int id)
         {
             var deleteReview = await _reviewRepository.DeleteReviewRepository(id);
