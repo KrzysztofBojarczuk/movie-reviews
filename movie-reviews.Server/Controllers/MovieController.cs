@@ -25,6 +25,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> CreateMovie([FromBody] MovieCreateDto movie)
         {
             var movieCreate = _mapper.Map<Movie>(movie);
@@ -37,6 +39,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet()]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Movie>))]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetAllMovies(string searchTerm = null, DateTime? startDatepicker = null, DateTime? endDatepicker = null, [FromQuery] List<Category> enumCategory = null)
         {
             var movie = await _movieRepository.GetMovieRepositry(searchTerm, startDatepicker, endDatepicker, enumCategory);
@@ -47,6 +51,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> GetMovieById(int id)
         {
             var movie = await _movieRepository.GetMovieByIdRepository(id);
@@ -62,6 +68,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> UpdateMovie(int id, MovieCreateDto movie)
         {
 
@@ -75,6 +83,8 @@ namespace movie_reviews.Server.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> DeleteMovie(int id)
         {
             var movieToDelete = await _movieRepository.DeleteMovieRepository(id);
