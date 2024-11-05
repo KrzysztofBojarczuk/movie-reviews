@@ -12,34 +12,32 @@ namespace movie_reviews.Server.Repository
     public class UsersRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public UsersRepository(ApplicationDbContext context)
+        public UsersRepository(ApplicationDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<ICollection<AppUser>> GettAllUsersRepository(string searchTerm)
         {
-            var query = await _context.Users.Include(x => x.Review).ToListAsync();
+            var query = await _userManager.Users.Include(x => x.Review).ToListAsync();
 
             if (!searchTerm.IsNullOrEmpty())
             {
-                query = query.Where(x => x.UserName.ToLower().Contains(searchTerm.ToLower()) || x.Email.ToLower().Contains(searchTerm.ToLower())).ToList();
+                query = query.Where(x => x.UserName.ToLower().Contains(searchTerm.ToLower()) ||
+                                         x.Email.ToLower().Contains(searchTerm.ToLower())).ToList();
             }
 
-            if (query == null)
-            {
-                return null;
-            }
-
-            return (ICollection<AppUser>)query;
+            return query;
         }
 
         public async Task<AppUser> DeleteUserRepository(string userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var user = await _userManager.FindByIdAsync(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 return null;
             }
@@ -48,23 +46,16 @@ namespace movie_reviews.Server.Repository
 
             _context.Reviews.RemoveRange(reviewsToDelete);
 
-            _context.Users.Remove(user);
+            await _userManager.DeleteAsync(user);
 
-            await _context.SaveChangesAsync();
-
-            return (AppUser)user;
+            return user;
         }
 
         public async Task<AppUser> GetUserByIdRepository(string userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            var user = await _userManager.FindByIdAsync(userId);
 
-            if(user == null )
-            {
-                return null;
-            }
-
-            return (AppUser)user;
+            return user;
         }
 
         public async Task<ICollection<Review>> GetUserWithReviewsRepository(string userId)
@@ -81,17 +72,14 @@ namespace movie_reviews.Server.Repository
 
         public async Task<int> GetNumberUsersRepository()
         {
-            var userNumber = await _context.Users.CountAsync();
-
-            return userNumber;
+            return await _userManager.Users.CountAsync();
         }
-        public async Task<ICollection<string>> GetUserEmailsRepository(List<string> userId)
+        public async Task<ICollection<string>> GetUserEmailsRepository(List<string> userIds)
         {
-            var userEmails = await _context.Users
-                                          .Where(u => userId.Contains(u.Id))
-                                          .Select(u => u.Email)
-                                          .ToListAsync();
-
+            var userEmails = await _userManager.Users
+                                               .Where(u => userIds.Contains(u.Id))
+                                               .Select(u => u.Email)
+                                               .ToListAsync();
             return userEmails;
         }
 
