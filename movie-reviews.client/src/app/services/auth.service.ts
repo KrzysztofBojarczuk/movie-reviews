@@ -1,6 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  map,
+  of,
+  throwError,
+} from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { LoginResponse } from '../models/login-response';
 import { RegisterRequest } from '../models/register-request';
@@ -35,8 +42,17 @@ export class AuthService {
           document.cookie = `refreshToken=${response.refreshToken};`;
           this.loggedInSubject.next(true);
           return response;
-        })
+        }),
+        catchError(this.handleError)
       );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred';
+    if (error.status === 401) {
+      errorMessage = 'User not found or incorrect password.';
+    }
+    return throwError(() => new Error(errorMessage));
   }
 
   refreshToken(): Observable<LoginResponse> {
