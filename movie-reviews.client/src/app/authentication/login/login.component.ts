@@ -11,7 +11,7 @@ import { LoginRequest } from '../../models/login-request';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-
+  errorMessage: string = '';
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -36,13 +36,16 @@ export class LoginComponent {
     this.isLoggedIn();
   }
 
-  onSubmit(login: LoginRequest) {
-    this.authService.login(login).subscribe(() => {
-      console.log('Login successful');
-      this.router.navigate(['reviews']);
+  onSubmit(loginData: any) {
+    this.authService.login(loginData).subscribe({
+      next: () => {
+        this.router.navigate(['reviews']);
+      },
+      error: (error) => {
+        this.errorMessage = error.message;
+      },
     });
   }
-
   moveToSignUp() {
     this.router.navigate(['register']);
   }
