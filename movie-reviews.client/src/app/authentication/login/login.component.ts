@@ -39,7 +39,7 @@ export class LoginComponent {
   onSubmit(loginData: any) {
     this.authService.login(loginData).subscribe({
       next: () => {
-        this.router.navigate(['reviews']);
+        this.router.navigate(['Spectator']);
       },
       error: (error) => {
         this.errorMessage = error.message;
