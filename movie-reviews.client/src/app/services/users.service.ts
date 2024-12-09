@@ -11,10 +11,14 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getAllUserServices(searchTerm: string = ''): Observable<User[]> {
+  getAllUserAdminServices(searchTerm: string = ''): Observable<User[]> {
     return this.http.get<User[]>(
-      this.apiUrl + `GetAllUsers?searchTerm=${searchTerm}`
+      this.apiUrl + `GetAllUsersAdmin?searchTerm=${searchTerm}`
     );
+  }
+
+  getAllUserServices(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl + `GetAllUsers`);
   }
 
   deleteUserService(id: string): Observable<string> {

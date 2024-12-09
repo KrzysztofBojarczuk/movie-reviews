@@ -44,6 +44,7 @@ import { JwtInterceptor } from './interceptors/access-token-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { LayoutComponent } from './layout/layout.component';
 import { SpectatorComponent } from './SpectatorView/spectator/spectator.component';
+import { UserReviewerFormComponent } from './adminpanel/users/admin-user-reviewer-form/user-reviewer-form.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SpectatorComponent } from './SpectatorView/spectator/spectator.componen
     AdminUpdateMoviesComponent,
     LayoutComponent,
     SpectatorComponent,
+    UserReviewerFormComponent,
   ],
   imports: [
     CheckboxModule,

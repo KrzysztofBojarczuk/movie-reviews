@@ -12,13 +12,18 @@
   <p-button
     label="Search"
     severity="secondary"
-    (click)="getAllUsers(value)"
+    (click)="getAllUsersAdmin(value)"
   ></p-button>
   <p-button
     label="Send Emails To Users"
     severity="help"
     (click)="sendEmailsToUsers(selectedUsers)"
     [disabled]="selectedUsers.length === 0"
+  ></p-button>
+  <p-button
+    label="Add Reviewer"
+    severity="help"
+    (click)="addingUserReviewer()"
   ></p-button>
 </div>
 

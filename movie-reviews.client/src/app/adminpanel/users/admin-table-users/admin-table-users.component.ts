@@ -11,6 +11,8 @@ import { AdminUpdateUserComponent } from '../admin-update-user/admin-update-user
 import { TableRowCollapseEvent, TableRowExpandEvent } from 'primeng/table';
 import { Review } from '../../../models/review';
 import { ReviewService } from '../../../services/review.service';
+import { RegisterRequest } from '../../../models/register-request';
+import { UserReviewerFormComponent } from '../admin-user-reviewer-form/user-reviewer-form.component';
 
 @Component({
   selector: 'app-admin-table-users',
@@ -44,7 +46,7 @@ export class AdminTableUsersComponent {
   ) {}
 
   ngOnInit() {
-    this.getAllUsers();
+    this.getAllUsersAdmin();
     this.getNumberOfUsers();
   }
 
@@ -82,11 +84,11 @@ export class AdminTableUsersComponent {
 
   clearFilter() {
     this.value = '';
-    this.getAllUsers(this.value);
+    this.getAllUsersAdmin(this.value);
   }
 
-  getAllUsers(searchTerm = '') {
-    this.userService.getAllUserServices(searchTerm).subscribe((result) => {
+  getAllUsersAdmin(searchTerm = '') {
+    this.userService.getAllUserAdminServices(searchTerm).subscribe((result) => {
       this.users = result;
     });
   }
@@ -107,7 +109,7 @@ export class AdminTableUsersComponent {
             summary: 'Success',
             detail: 'User deleted successfully',
           });
-          this.getAllUsers();
+          this.getAllUsersAdmin();
         });
       },
       reject: () => {
@@ -137,7 +139,7 @@ export class AdminTableUsersComponent {
             summary: 'Success',
             detail: 'Review deleted successfully',
           });
-          this.getAllUsers();
+          this.getAllUsersAdmin();
         });
       },
       reject: () => {
@@ -176,6 +178,39 @@ export class AdminTableUsersComponent {
     });
   }
 
+  addingUserReviewer() {
+    const ref = this.dialogService.open(UserReviewerFormComponent, {
+      header: 'Add Reviewer',
+      width: '30%',
+      height: '35%',
+    });
+
+    ref.onClose.subscribe((result) => {
+      if (result) {
+        if (result.accepted) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'User Updated',
+            detail: `User has been added successfully.`,
+          });
+        } else if (result.rejected) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Update Cancelled',
+            detail: `User has been not added.`,
+          });
+        }
+      } else {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Dialog Closed',
+          detail: `Dialog was closed without any action.`,
+        });
+      }
+      this.getAllUsersAdmin();
+    });
+  }
+
   updateUser(users: User) {
     const ref = this.dialogService.open(AdminUpdateUserComponent, {
       header: 'Update User',
@@ -207,7 +242,7 @@ export class AdminTableUsersComponent {
           detail: `Dialog was closed without any action.`,
         });
       }
-      this.getAllUsers();
+      this.getAllUsersAdmin();
     });
   }
 }
