@@ -24,6 +24,16 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
+  registerUserReviewerService(
+    registerUser: RegisterRequest
+  ): Observable<RegisterRequest> {
+    registerUser.userName = registerUser.email;
+    return this.httpClient.post<RegisterRequest>(
+      this.apiUrl + 'api/Users/Register',
+      registerUser
+    );
+  }
+
   registerUserService(
     registerUser: RegisterRequest
   ): Observable<RegisterRequest> {

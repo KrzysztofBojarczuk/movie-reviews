@@ -41,7 +41,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireRole",
-         policy => policy.RequireRole("Administrator", "User"));
+         policy => policy.RequireRole("Administrator", "Reviewer", "User"));
 });
 
 var app = builder.Build();

@@ -12,7 +12,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator, User")]
+    [Authorize(Roles = "Administrator,Reviewer, User")]
     public class MovieController : ControllerBase
     {
         private readonly IMovieRepository _movieRepository;

@@ -11,7 +11,7 @@ namespace movie_reviews.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Administrator, User")]
+    [Authorize(Roles = "Administrator, Reviewer, User")]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewRepository _reviewRepository;
